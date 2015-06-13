@@ -14,81 +14,76 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a8d125e-3636-4946-9163-7aaf1686b61a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/raw/ensoniq.wav" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/gradle_project_sync_data.bin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/ic_launcher.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/model_data.bin" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/libs/vorbis-java-1.0.0-beta.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/BrowserActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/com/example/ringtonegenerator/test/BuildConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/build/generated/source/buildConfig/debug/com/example/ringtonegenerator/BuildConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ExportActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/JavAud.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/Note.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/PatternList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/example/ringtonegenerator/R.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RingtoneGenerator1.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/SelectorActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ToneMaker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/TonePattern.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileInStream.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileOutStream.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileWriter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/browser_layout.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-sw600dp/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-sw720dp-land/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/export.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/file_dialog.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gradlew.bat" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gradlew" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/import-summary.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/list_button_shape_pressed.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/listview_background.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/main_button.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/main_button_shape.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/main_button_shape_pressed.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/raw/patterns" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/selector_layout.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/sfTools.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-v11/styles.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-v14/styles.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_19_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/vorbis_java_1_0_0_beta.xml" />
+    <list default="true" id="5a8d125e-3636-4946-9163-7aaf1686b61a" name="Default" comment="Renamed package to com.safield.ringtone">
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\generated\source\buildConfig\debug\com\example\ringtonegenerator\BuildConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\generated\source\r\debug\com\example\ringtonegenerator\R.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\BrowserActivity$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\BrowserActivity.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\BuildConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\ExportActivity$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\ExportActivity.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\JavAud.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\MainActivity$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\MainActivity.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\Note.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\PatternList.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$array.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$attr.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$color.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$dimen.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$drawable.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$id.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$layout.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$menu.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$raw.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$string.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R$style.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\R.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\SelectorActivity$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\SelectorActivity$2.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\SelectorActivity.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\ToneMaker.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\TonePattern.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\WavFile.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\WavFileInStream.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\WavFileOutStream.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\WavFileReader.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\WavFileWriter.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\classes\debug\com\example\ringtonegenerator\sfTools.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\dex\debug\classes.dex" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-7541db917baa506c0dd564574dda219c7099e134.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\pre-dexed\debug\vorbis-java-1.0.0-beta-9d3d3c5cc1d5db044bdf81b37a71bb1e8daf09f9.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\outputs\apk\app-debug-unaligned.apk" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\outputs\apk\app-debug.apk" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\BrowserActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\ExportActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\JavAud.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\MainActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\Note.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\PatternList.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\SelectorActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\ToneMaker.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\TonePattern.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\WavFile.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\WavFileInStream.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\WavFileOutStream.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\WavFileReader.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\WavFileWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\java\com\example\ringtonegenerator\sfTools.java" afterPath="" />
+      <change type="MOVED" beforePath="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\RingtoneGenerator1.iml" afterPath="$PROJECT_DIR$/SafireRingtoneMaker.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug-androidTest.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RingtoneGenerator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -132,11 +127,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ExportActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ExportActivity.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1195929">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExportActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/safield/SafireRingtoneMaker/ExportActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BrowserActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/safield/SafireRingtoneMaker/BrowserActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.09313155">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -1383,6 +1398,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ToneMaker.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ExportActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/safield/ringtonegenerator/BrowserActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/safield/SafireRingtoneMaker/BrowserActivity.java" />
       </list>
     </option>
   </component>
@@ -1435,17 +1453,61 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="RingtoneGenerator1">
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="RingtoneGenerator1">
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="app">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src/main">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="java">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com/safield/SafireRingtoneMaker">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -1500,6 +1562,10 @@
       <recent name="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\src\main\res\layout" />
     </key>
     <key name="android.template.parentActivityClass">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.safield.SafireRingtoneMaker" />
       <recent name="" />
     </key>
   </component>
@@ -1717,10 +1783,11 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884398" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.52300787" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.332211" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.122732125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24332978" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884398" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1734,7 +1801,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23105656" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32959184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1781,29 +1847,16 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ExportActivity.java</url>
-          <line>40</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="1" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="73" column="47" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1839,13 +1892,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ToneMaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="4" selection-start-line="40" selection-start-column="18" selection-end-line="56" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Android/sdk/platforms/android-19/android.jar!/android/os/Looper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1853,17 +1899,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="71" column="9" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1899,13 +1939,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ToneMaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Android/sdk/platforms/android-19/android.jar!/android/os/Looper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1913,17 +1946,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="147" column="34" selection-start-line="147" selection-start-column="34" selection-end-line="147" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1937,48 +1964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/SelectorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="24" selection-start-line="30" selection-start-column="0" selection-end-line="35" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileInStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/Note.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="27" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/TonePattern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="24" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ToneMaker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="151" column="43" selection-start-line="151" selection-start-column="43" selection-end-line="151" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/import-summary.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1986,38 +1971,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/SelectorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/import-summary.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/SelectorActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileInStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -2049,49 +2006,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/sfTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4644936">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="157" column="31" selection-start-line="157" selection-start-column="31" selection-end-line="157" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/JavAud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="214" column="0" selection-start-line="214" selection-start-column="0" selection-end-line="214" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/TonePattern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/Note.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="26" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="26" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
@@ -2111,43 +2034,15 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/export.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="41" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/WavFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/PatternList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="34" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="34" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
@@ -2157,17 +2052,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ToneMaker.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="26" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="26" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/ringtonegenerator/ExportActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/safield/SafireRingtoneMaker/ExportActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1195929">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/safield/SafireRingtoneMaker/BrowserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09313155">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding />
         </state>
       </provider>

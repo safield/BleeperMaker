@@ -45,7 +45,7 @@ ADDED from AndroidManifest.xml:18:5
 		ADDED from AndroidManifest.xml:20:9
 	android:theme
 		ADDED from AndroidManifest.xml:22:9
-activity#com.example.ringtonegenerator.MainActivity
+activity#com.safield.SafireRingtoneMaker.MainActivity
 ADDED from AndroidManifest.xml:23:9
 	android:label
 		ADDED from AndroidManifest.xml:25:13
@@ -61,15 +61,15 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:29:17
 	android:name
 		ADDED from AndroidManifest.xml:29:27
-activity#com.example.ringtonegenerator.SelectorActivity
+activity#com.safield.SafireRingtoneMaker.SelectorActivity
 ADDED from AndroidManifest.xml:32:9
 	android:name
 		ADDED from AndroidManifest.xml:32:19
-activity#com.example.ringtonegenerator.BrowserActivity
+activity#com.safield.SafireRingtoneMaker.BrowserActivity
 ADDED from AndroidManifest.xml:34:9
 	android:name
 		ADDED from AndroidManifest.xml:34:19
-activity#com.example.ringtonegenerator.ExportActivity
+activity#com.safield.SafireRingtoneMaker.ExportActivity
 ADDED from AndroidManifest.xml:36:9
 	android:label
 		ADDED from AndroidManifest.xml:38:13

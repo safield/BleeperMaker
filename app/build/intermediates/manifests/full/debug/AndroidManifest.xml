@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Material" >
         <activity
-            android:name="com.example.ringtonegenerator.MainActivity"
+            android:name="com.safield.SafireRingtoneMaker.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,12 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.ringtonegenerator.SelectorActivity" >
+        <activity android:name="com.safield.SafireRingtoneMaker.SelectorActivity" >
         </activity>
-        <activity android:name="com.example.ringtonegenerator.BrowserActivity" >
+        <activity android:name="com.safield.SafireRingtoneMaker.BrowserActivity" >
         </activity>
         <activity
-            android:name="com.example.ringtonegenerator.ExportActivity"
+            android:name="com.safield.SafireRingtoneMaker.ExportActivity"
             android:label="@string/title_activity_export"
             android:windowSoftInputMode="stateAlwaysVisible" >
         </activity>
