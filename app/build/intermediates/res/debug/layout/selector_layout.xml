@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+ <LinearLayout
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/pitchLayout"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center"
+             android:orientation="vertical" >
+
+         <ListView
+    		 android:id="@+id/selector_layout"
+   		     android:layout_width="match_parent"
+   			 android:layout_height="0dp"
+   			 android:layout_weight="8"
+   			 android:background="@color/background"
+   			 
+    		 android:layout_gravity="center"
+     		>
+    	 </ListView>
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             android:orientation="horizontal"
+             android:background="@color/background">
+
+             <Button
+                 android:id="@+id/doneButton"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:text="Done"
+                 android:textColor="@color/highcontrast"
+                 android:background="@drawable/main_button"
+                 android:layout_margin="@dimen/done_margin" />
+"
+         </LinearLayout>
+
+  </LinearLayout>
+<!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/layout/selector_layout.xml -->

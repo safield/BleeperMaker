@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RingtoneGenerator</string>
+
+    <string name="action_load">Load</string>
+    <string name="action_save">Save</string>
+    <string name="action_export">Export</string>
+
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <string-array name="sounds_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+        <string name="sound">Sound</string>
+        <string name="pattern">Pattern</string>
+        <string name="preview">Play</string>
+        <string name="pitch">Pitch</string>
+        <string name="speed">Speed</string>
+        <string name="loop">Loop</string>
+        <string name="mercury">Mercury</string>
+
+    <string name="title_activity_export">Export</string>
+    <string name="export_message">Enter a name for your ringtone. Once you push enter, the ringtone will be saved to your phones ringtone</string>
+
+    <string name="action_settings">Settings</string>
+    
+    
+    
+</resources>

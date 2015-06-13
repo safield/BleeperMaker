@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <solid
+        android:color="@color/contrast" />
+    
+
+</shape><!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/drawable/list_button_shape_pressed.xml -->

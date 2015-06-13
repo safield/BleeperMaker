@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67">
+        <dex dex="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\pre-dexed\debug\support-v4-19.1.0-7541db917baa506c0dd564574dda219c7099e134.jar" />
+    </item>
+    <item
+        jar="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\libs\vorbis-java-1.0.0-beta.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="456ba81668ff4e3dbc1c00c12a35ba1b5b142d42">
+        <dex dex="C:\Users\Scott\AndroidStudioProjects\RingtoneGenerator1\app\build\intermediates\pre-dexed\debug\vorbis-java-1.0.0-beta-9d3d3c5cc1d5db044bdf81b37a71bb1e8daf09f9.jar" />
+    </item>
+
+</items>
