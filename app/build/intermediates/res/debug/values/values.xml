@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="sounds_array">
         <item>0</item>
@@ -20,14 +20,14 @@
         <item>14</item>
         <item>15</item>
     </string-array>
-    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="background">#2A2D2E</color>
     <color name="black">#000000</color>
     <color name="contrast">#84ABAB</color>
     <color name="highcontrast">#E87D7D</color>
     <color name="main">#464D4D</color>
-    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -41,7 +41,7 @@
     <dimen name="item_text">11dp</dimen>
     <dimen name="margin">8dp</dimen>
     <dimen name="widget_margin">15dp</dimen>
-    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_export">Export</string>
     <string name="action_load">Load</string>
@@ -59,7 +59,7 @@
     <string name="sound">Sound</string>
     <string name="speed">Speed</string>
     <string name="title_activity_export">Export</string>
-    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/RingtoneGenerator1/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
