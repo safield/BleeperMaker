@@ -43,7 +43,6 @@ public class MainActivity extends Activity {
 		assignListeners();
 		
 		tMaker = new ToneMaker(this);
-		
 	}
 
 	@Override
