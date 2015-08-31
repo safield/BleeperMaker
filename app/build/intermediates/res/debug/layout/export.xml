@@ -15,7 +15,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/export_message"
             android:id="@+id/textView"
-            android:padding="20dp" />
+            android:padding="10dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -43,7 +43,8 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +60,13 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/exportText"
                 android:layout_gravity="center_vertical"
-                android:padding="15dp" />
+                android:lines="1"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="24"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:imeOptions="actionDone"/>
 
         </LinearLayout>
 

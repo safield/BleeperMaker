@@ -3,6 +3,7 @@ package com.safield.SafireRingtoneMaker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,12 +36,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		
+		setContentView(R.layout.main_screen_layout);
+		Log.i("test", "Main Acvitity");
 		patternSelector=0;
 		soundSelector=0;
-		assignWidgets();
-		assignListeners();
+		//assignWidgets();
+		//assignListeners();
 		
 		tMaker = new ToneMaker(this);
 	}
@@ -63,7 +64,6 @@ public class MainActivity extends Activity {
 		else if(requestCode == PATTERN_BROWSE_REQUEST) {
 
             patternSelector = resultCode;
-			tMaker.setPattern(patternSelector);
 		}
 	}
 

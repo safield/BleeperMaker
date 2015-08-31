@@ -11,23 +11,16 @@
     <string name="cancel">Cancel</string>
 
     <string-array name="sounds_array">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
+        <item>Sine</item>
+        <item>Sine Tail</item>
+        <item>Saw</item>
+        <item>Square</item>
+        <item>Saw Plucked</item>
+        <item>Square Plucked</item>
+        <item>Poly Saw</item>
+        <item>Poly Sqaure</item>
     </string-array>
+
         <string name="sound">Sound</string>
         <string name="pattern">Pattern</string>
         <string name="preview">Play</string>
@@ -37,7 +30,7 @@
         <string name="mercury">Mercury</string>
 
     <string name="title_activity_export">Export</string>
-    <string name="export_message">Enter a name for your ringtone. Once you push enter, the ringtone will be saved to your phones ringtone</string>
+    <string name="export_message">Enter a name, and export your tone to the Android system.</string>
 
     <string name="action_settings">Settings</string>
     

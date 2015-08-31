@@ -1,7 +1,12 @@
 package com.safield.SafireRingtoneMaker;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Map;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
@@ -41,12 +46,13 @@ public class ToneMaker {
 
         tempo = 154;
 		loop = 1;
-		repeat = 1; // repeat is
+		repeat = 1;
 		spacing = 0;
         played = false;
         glbPitch = 0;
 
-        readSamples(); // must come after ctx is assigned
+        readSamples();
+		setSample(0);
 		list = new PatternList(ctx,R.raw.patterns);
 		pattern = list.get(0);
 		initAudio();
@@ -77,23 +83,19 @@ public class ToneMaker {
 	
 	public void logPatternList()
 	{
-		Log.i("test",list.toString());
+		Log.i("test", list.toString());
 	}
 
 	public void setPattern(int index)
 	{
+
         pattern = list.get(index);
 		pattern.setTempo(tempo);
+		Log.wtf("test", pattern.toString());
 	}
-	
-	public void setSample(WavFile sample)
-	{
-		this.sample=sample;
-	}
-	
+
 	public void setTempo(int tempo)
 	{
-
         this.tempo = tempo;
 
 		if(pattern != null)
@@ -111,10 +113,9 @@ public class ToneMaker {
 		this.pattern = pattern;
 	}
 	
-	public void setSample(String name)
+	public void setSample(int position)
 	{
-        WavFileReader reader= new WavFileReader();
-		sample=reader.readWave(name);
+		sample = samples.get(position);
 	}
 	
 	/*
@@ -143,7 +144,7 @@ public class ToneMaker {
 		
 		pattern.setSampleLength(sampleLength); //send pattern the sampleLength after pitch
 		pattern.pitchMod(glbPitch);
-		float[] output = new float[pattern.getPlayTimeInSmps()* loop *repeat+((repeat-1)*spacing)];//returns total play time of pattern in #samples.
+		float[] output = new float[pattern.getPlayTimeInSmps() * loop * repeat + ((repeat-1) * spacing)];//returns total play time of pattern in #samples.
 		int currSampleLength;
 		debug="Sample length="+((int)(currSample.length*Math.pow(2, glbPitch/12.0)))+'\n';
 		
@@ -216,12 +217,25 @@ public class ToneMaker {
 			played=true;*/
 		}
 	}
-	
-	private void readSamples()
+
+	public void playSample(String name)
 	{
 
+	}
+
+	private void readSamples()
+	{
 		WavFileReader reader = new WavFileReader();
-		sample = reader.readWave(ctx, R.raw.ensoniq);
+		samples = new ArrayList<WavFile>();
+
+		samples.add(reader.readWave(ctx, R.raw.sine));
+		samples.add(reader.readWave(ctx, R.raw.sine_tail));
+		samples.add(reader.readWave(ctx, R.raw.saw));
+		samples.add(reader.readWave(ctx, R.raw.square));
+		samples.add(reader.readWave(ctx, R.raw.plucked_saw));
+		samples.add(reader.readWave(ctx, R.raw.plucked_square));
+		samples.add(reader.readWave(ctx, R.raw.poly_saw));
+		samples.add(reader.readWave(ctx, R.raw.poly_square));
 	}
 	
 	private void initAudio()
@@ -253,5 +267,16 @@ public class ToneMaker {
 		
 		track.write(JavAud.floatToShort(output), 0, output.length);
 		track.play();
+	}
+
+	private void saveProject(String name)
+	{
+		FileOutputStream outputStream;
+
+		try {
+			outputStream = ctx.openFileOutput(name , Context.MODE_PRIVATE);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#2A2D2E</color>
-    <color name="main">#464D4D</color>
+    <color name="background">#bbbbcb</color>
+    <color name="main">#ffffff</color>
     <color name="contrast">#84ABAB</color>
     <color name="highcontrast">#E87D7D</color>
     <color name="black">#000000</color>
-    
+    <color name="spinner">#cceeff</color>
+    <color name="button_up">#324F69</color>
+    <color name="button_down">#09917B</color>
 </resources>

@@ -5,7 +5,6 @@ import android.content.Context;
 public  class WavFileReader{
 		
 		private WavFileInStream stream;
-		private boolean error;
 		private boolean debug;
 		private int smpRate;
 		private int numChannels;
@@ -20,28 +19,27 @@ public  class WavFileReader{
 		public WavFile readWave(String name)
 		{
 			
-			WavFile result=null;
+			WavFile result = null;
 			
-			stream= new WavFileInStream(name);
-			error=false;
-			
+			stream = new WavFileInStream(name);
+
 			//these methods must be called in proper order
-			if(!error)readRiff();
-			if(!error)readChunkSize();
-			if(!error)readFormat();
-			if(!error)readSubChunkID();
-			if(!error)readSubChunk1Size();
-			if(!error)readAudioFormat();
-			if(!error)readNumChannels();
-			if(!error)readSmpRate();
-			if(!error)readByteRate();
-			if(!error)readBlockAlign();
-			if(!error)readBitsPerSmp();
-			if(!error)readSubChunk2ID();
-			if(!error)readSubChunk2Size();
-			if(!error)readPCMData();
+			readRiff();
+			readChunkSize();
+			readFormat();
+			readSubChunkID();
+			readSubChunk1Size();
+			readAudioFormat();
+			readNumChannels();
+			readSmpRate();
+			readByteRate();
+			readBlockAlign();
+			readBitsPerSmp();
+			readSubChunk2ID();
+			readSubChunk2Size();
+			readPCMData();
 			
-			if(!error)result=new WavFile(numChannels,smpRate,data);
+			result = new WavFile(numChannels , smpRate , data);
 			
 			reset();
 			return result;
@@ -51,29 +49,28 @@ public  class WavFileReader{
 		public WavFile readWave(Context ctx, int id)
 		{
 			
-			WavFile result=null;
+			WavFile result = null;
 			
-			stream= new WavFileInStream(ctx,id);
-			error=false;
-			
+			stream = new WavFileInStream(ctx,id);
+
 			//these methods must be called in proper order
-			if(!error)readRiff();
-			if(!error)readChunkSize();
-			if(!error)readFormat();
-			if(!error)readSubChunkID();
-			if(!error)readSubChunk1Size();
-			if(!error)readAudioFormat();
-			if(!error)readNumChannels();
-			if(!error)readSmpRate();
-			if(!error)readByteRate();
-			if(!error)readBlockAlign();
-			if(!error)readBitsPerSmp();
-			if(!error)readSubChunk2ID();
-			if(!error)readSubChunk2Size();
-			if(!error)readPCMData();
+			readRiff();
+			readChunkSize();
+			readFormat();
+			readSubChunkID();
+			readSubChunk1Size();
+			readAudioFormat();
+			readNumChannels();
+			readSmpRate();
+			readByteRate();
+			readBlockAlign();
+			readBitsPerSmp();
+			readSubChunk2ID();
+			readSubChunk2Size();
+			readPCMData();
 			
-			if(!error)result=new WavFile(numChannels,smpRate,data);
-			
+			result = new WavFile(numChannels , smpRate , data);
+
 			reset();
 			return result;
 		}
@@ -86,65 +83,59 @@ public  class WavFileReader{
 		
 		private void reset()
 		{
-			error=false;
 			smpRate=0;
 			numChannels=0;
 			dataLength=0;
-			data=null;
+			data = null;
 			stream.close();
 		}
 		
 		private  void readRiff()
 		{
-			String riff=stream.readStringFour();
-			error=(!riff.equals("RIFF"));
-			if(error&&debug)System.out.println("ERROR: Chunk ID error");
+			String riff = stream.readStringFour();
+
+			if(!riff.equals("RIFF"))
+				throw new AssertionError("WavFileReader:readRiff() Error reading file");
 		}
+
 		private void readChunkSize()
 		{
 			int chunkSize=stream.readIntSwapped();
-			
-			if(chunkSize<36)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: ChunkSize Error!");
-			}
+
+			if(chunkSize < 36)
+				throw new AssertionError("WavFileReader:readChunkSize() Error reading file");
 		}
 		
 		private void readFormat()
 		{
-			String read=stream.readStringFour();
-			error=(!read.equals("WAVE"));
-			if(error&&debug)System.out.println("ERROR: Format tag error.");
+			String read = stream.readStringFour();
+
+			if(!read.equals("WAVE"))
+				throw new AssertionError("WavFileReader:readFormat() Error reading file");
 		}
 		
 		private void readSubChunkID()
 		{
 			String read=stream.readStringFour();
-			error=(!read.equals("fmt "));
-			if(error&&debug)System.out.println("ERROR: SubChunk1ID tag error.");
+
+			if(!read.equals("fmt "))
+				throw new AssertionError("WavFileReader:readSubChunkID() Error reading file");
 		}
 		
 		private void readSubChunk1Size()
 		{
 			int read = stream.readIntSwapped();
-			
-			if(read!=16)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: SubChunk1 size error.");
-			}
+
+			if(read != 16)
+				throw new AssertionError("WavFileReader:readSubChunk1Size() Error reading file");
 		}
 		
 		private void readAudioFormat()
 		{
 			int read = stream.readShortSwapped();
-			
-			if(read!=1)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: unknown compression");
-			}
+
+			if(read != 1)
+				throw new AssertionError("WavFileReader:readAudioFormat() Error reading file");
 		}
 		
 		private int readNumChannels()
@@ -152,14 +143,10 @@ public  class WavFileReader{
 			int read = stream.readShortSwapped();
 			
 			if(read<1||read>2)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: Unsupported number of channels "+read);
-			}
-			else
-			{
-				numChannels=read;
-			}
+				throw new AssertionError("WavFileReader:readNumChannels() Error reading file");
+
+			numChannels = read;
+
 			return read;
 		}
 	
@@ -168,79 +155,61 @@ public  class WavFileReader{
 			int read = stream.readIntSwapped();
 			
 			if(!(read==44100||read==48000))
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: Unsupported sample rate "+read);
-			}
-			else
-			{
-				smpRate=read;
-			}
-			
+				throw new AssertionError("WavFileReader:readSmpRate() Error reading file");
+
+			smpRate = read;
+
 			return read;
 		}
 		
 		private void readByteRate()
 		{
 			int read = stream.readIntSwapped();
-			
-			if(read!=smpRate*numChannels*2)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: ByteRate tag error "+read);
-			}
+
+			// smpRate * numChannels * bytesPerSample
+			if(read != smpRate * numChannels * 2)
+				throw new AssertionError("WavFileReader:readByteRate() smpRate="+smpRate+" numChannels="+numChannels+" - expected ByteRate="+smpRate*numChannels*2+" actual="+read);
 		}
 		
 		private void readBlockAlign()
 		{
 			int read = stream.readShortSwapped();
 			
-			if(read!=numChannels*2)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: BlockAlign tag error "+read);
-			}
+			if(read != numChannels*2)
+				throw new AssertionError("WavFileReader:readBlockAlign() Error reading file");
 		}
 		
 		private void readBitsPerSmp()
 		{
 			int read = stream.readShortSwapped();
-			
-			if(read!=16)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: unsupported bit depth "+read);
-			}
+
+			if(read != 16)
+				throw new AssertionError("WavFileReader:readBitsPerSmp() Error reading file");
 		}
 		
 		private void readSubChunk2ID()
 		{
-			String read=stream.readStringFour();
-			error=(!read.equals("data"));
-			if(error&&debug)System.out.println("ERROR: Format tag error.");
+			String read = stream.readStringFour();
+
+			if(!read.equals("data"))
+				throw new AssertionError("WavFileReader:readSubChunk2ID() Error reading file");
 		}
 		
-		private int readSubChunk2Size()
+		private void readSubChunk2Size()
 		{
 			int read = stream.readIntSwapped();
-			
 			if(read<1)
-			{
-				error=true;
-				if(debug)System.out.println("ERROR: no file data "+read);
-			}
-			else
-			{
-				dataLength=read;
-			}
-			
-			return read;
+				throw new AssertionError("WavFileReader:readSubChunk2Size() Error reading file");
+
+			dataLength = read;
 		}
 		
 		private void readPCMData()
 		{
-			data=stream.readData(dataLength);			
-			
+			if(dataLength == 0)
+				throw new AssertionError("WavFileReader:readPCMData() Error reading file - dataLength = 0");
+
+			data = stream.readData(dataLength);
 		}
 		
 		

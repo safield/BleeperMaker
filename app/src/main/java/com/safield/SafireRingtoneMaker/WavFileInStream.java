@@ -15,7 +15,7 @@ public class WavFileInStream
 	public WavFileInStream(String fileName)
 	{
 		try {
-			stream=new DataInputStream(new FileInputStream(fileName));
+			stream = new DataInputStream(new FileInputStream(fileName));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -23,7 +23,7 @@ public class WavFileInStream
 	
 	public WavFileInStream(Context ctx, int id)
 	{
-		stream=new DataInputStream(ctx.getResources().openRawResource(id));
+		stream = new DataInputStream(ctx.getResources().openRawResource(id));
 	}
 	
 	public short readShort() 
@@ -81,7 +81,7 @@ public class WavFileInStream
 			e.printStackTrace();
 		}
 		
-		result=(int)((bytes[0] & 0xFF) | ((bytes[1] & 0xFF) << 8 ) | ((bytes[2] & 0xFF) << 16 ) | ((bytes[3] & 0xFF) << 24 ));
+		result = ((bytes[0] & 0xFF) | ((bytes[1] & 0xFF) << 8 ) | ((bytes[2] & 0xFF) << 16 ) | ((bytes[3] & 0xFF) << 24 ));
 		
 		return (int)result;
 	}

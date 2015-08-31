@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import android.content.Context;
+import android.util.Log;
 
 public class PatternList {
 	private ArrayList<TonePattern> list;
@@ -24,38 +25,46 @@ public class PatternList {
 	private void readPatterns(Context ctx,int id)
 	{
 		try {
+
 			BufferedReader reader = new BufferedReader(
 					                new InputStreamReader(
 					                ctx.getResources().openRawResource(id)));
 			
-			String line="";
+			String line = "";
 			String[] array;
-			TonePattern pattern=null;
-			int semitone=0;
-			boolean first=true;
-		
-			while((line=reader.readLine())!=null) {
+			TonePattern pattern = null;
+			int semitone = 0;
+			boolean first = true;
+
+			while((line = reader.readLine()) != null) {
 				
-				array=line.split(" ");
+				array = line.split(" ");
 				
-				if(array.length==2) {
-					if(!first) {
+				if(array.length == 2) {
+
+					if(!first)
 						list.add(pattern);
-					}
-					first=false;
-					pattern=new TonePattern(array[0]);
+
+					first = false;
+					pattern = new TonePattern(array[0]);
 					
-					if(array[1].equals("nt"))pattern.setTail(false);
+					if(array[1].equals("nt"))
+						pattern.setTail(false);
 				}
-				else if(array.length==3) {
-					semitone=Integer.parseInt(array[2]);
-					if(array[1].equals("-")) {
-						semitone=semitone-(semitone*2);
-					}
+				else if(array.length == 3) {
+
+					semitone = Integer.parseInt(array[2]);
+
+					if(array[1].equals("-"))
+						semitone = semitone - (semitone*2);
+
 					pattern.addNote(Integer.parseInt(array[0]), semitone);
 				}
 			}
+
+			// add the last pattern
 			list.add(pattern);
+
 			reader.close();
 			
 		} catch ( IOException e) {

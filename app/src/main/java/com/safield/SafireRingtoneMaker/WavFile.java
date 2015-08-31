@@ -14,6 +14,9 @@ public class WavFile
         this.channels = channels;
         this.sampleRate = sampleRate;
         this.data = data;
+
+        if(data.length <= 0)
+            throw new AssertionError("WavFile: Data length is 0");
     }
 
     public WavFile(int channels, int sampleRate)
@@ -29,6 +32,7 @@ public class WavFile
     public int getDataSize(){return data.length;}
     public float[] getData(){return data;}
     public void setData(float[]data){this.data=data;}
+    public void setName(){this.data=data;}
     public String toString(){
         return  " chnls="+channels+
                 " smpRate="+sampleRate+

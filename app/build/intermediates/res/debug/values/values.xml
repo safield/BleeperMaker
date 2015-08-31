@@ -3,35 +3,30 @@
     <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string-array name="sounds_array">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
+        <item>Sine</item>
+        <item>Sine Tail</item>
+        <item>Saw</item>
+        <item>Square</item>
+        <item>Saw Plucked</item>
+        <item>Square Plucked</item>
+        <item>Poly Saw</item>
+        <item>Poly Sqaure</item>
     </string-array>
     <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/colors.xml -->
     <eat-comment/>
-    <color name="background">#2A2D2E</color>
+    <color name="background">#bbbbcb</color>
     <color name="black">#000000</color>
+    <color name="button_down">#09917B</color>
+    <color name="button_up">#324F69</color>
     <color name="contrast">#84ABAB</color>
     <color name="highcontrast">#E87D7D</color>
-    <color name="main">#464D4D</color>
+    <color name="main">#ffffff</color>
+    <color name="spinner">#cceeff</color>
     <!-- From: file:/C:/Users/Scott/AndroidStudioProjects/SafireRingtoneMaker/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="corner_radius">8dp</dimen>
+    <dimen name="corner_radius">3dp</dimen>
     <dimen name="display_margin">10dp</dimen>
     <dimen name="display_text">18dp</dimen>
     <dimen name="done_margin">1dp</dimen>
@@ -49,7 +44,7 @@
     <string name="action_settings">Settings</string>
     <string name="app_name">RingtoneGenerator</string>
     <string name="cancel">Cancel</string>
-    <string name="export_message">Enter a name for your ringtone. Once you push enter, the ringtone will be saved to your phones ringtone</string>
+    <string name="export_message">Enter a name, and export your tone to the Android system.</string>
     <string name="loop">Loop</string>
     <string name="mercury">Mercury</string>
     <string name="ok">Ok</string>

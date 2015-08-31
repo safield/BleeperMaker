@@ -22,7 +22,7 @@ public class WavFileOutStream {
 			this.ctx=ctx;
 			File file=null;
 		
-			if(directory==ToneMaker.NOTIFICATION)
+			if(directory == ToneMaker.NOTIFICATION)
 			{
 				file = new File(Environment.getExternalStoragePublicDirectory(
 						Environment.DIRECTORY_NOTIFICATIONS), fileName+".wav");
