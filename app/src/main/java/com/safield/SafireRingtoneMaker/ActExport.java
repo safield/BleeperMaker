@@ -2,12 +2,9 @@ package com.safield.SafireRingtoneMaker;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
+import android.os.Environment;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ExportActivity extends Activity {
+public class ActExport extends Activity {
 
 
     private EditText exportName;
@@ -29,7 +26,7 @@ public class ExportActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.export);
+        setContentView(R.layout.export_layout);
 
         final Context thisCtx = this;
         exportName = (EditText)findViewById(R.id.exportText);
@@ -96,12 +93,11 @@ public class ExportActivity extends Activity {
         }
 
         if(ringtoneCheckbox.isChecked())
-            MainActivity.tMaker.generateOutTrack( text , ToneMaker.RINGTONE);
-
+            ToneMaker.Instance().writeToneToFile(text, Environment.DIRECTORY_RINGTONES);
         if(notificationCheckbox.isChecked())
-            MainActivity.tMaker.generateOutTrack( text , ToneMaker.NOTIFICATION);
+            ToneMaker.Instance().writeToneToFile(text, Environment.DIRECTORY_NOTIFICATIONS);
 
-        Toast.makeText(this, "Tone exported successfully.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Tone export complete", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

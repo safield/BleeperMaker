@@ -1,4 +1,4 @@
-single t
+test t
 16 + 0
 pingpong t
 16 + 6
@@ -13,7 +13,7 @@ march t
 16 + 0
 8 + 0
 8 + 0
-8 + 0
+4 + 0
 upper t
 32 - 12
 32 - 6

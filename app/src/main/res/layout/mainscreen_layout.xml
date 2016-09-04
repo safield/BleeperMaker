@@ -18,12 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Preview"
-            android:id="@+id/preview_button"
+            android:id="@+id/play_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:textColor="#ffffff"
             android:background="@drawable/main_button"
-            android:textSize="21dp" />
+            android:textSize="21dp"
+            android:onClick="buttonOnClick"
+            android:clickable="true"/>
     </FrameLayout>
 
     <LinearLayout
@@ -93,7 +95,26 @@
                     android:background="@color/main"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="Pattern"
+                        android:id="@+id/pattern_label"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/black" />
+
+                    <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pattern_spinner"
+                            android:layout_gravity="center_horizontal"
+                            android:spinnerMode="dropdown"
+                            android:entries="@array/sounds_array"/>
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
@@ -132,8 +153,9 @@
                 <SeekBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/seekBar"
-                    android:layout_gravity="center_horizontal" />
+                    android:id="@+id/pitch_seekbar"
+                    android:layout_gravity="center_horizontal"
+                    android:indeterminate="false" />
             </LinearLayout>
         </LinearLayout>
 
@@ -172,8 +194,9 @@
                 <SeekBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/seekBar2"
-                    android:layout_gravity="center_horizontal" />
+                    android:id="@+id/speed_seekbar"
+                    android:layout_gravity="center_horizontal"
+                    android:indeterminate="false" />
             </LinearLayout>
         </LinearLayout>
 
@@ -212,8 +235,9 @@
                 <SeekBar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/seekBar3"
-                    android:layout_gravity="center_horizontal" />
+                    android:id="@+id/loop_seekbar"
+                    android:layout_gravity="center_horizontal"
+                    android:indeterminate="false" />
             </LinearLayout>
         </LinearLayout>
 

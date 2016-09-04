@@ -10,7 +10,6 @@ public class WavFile
 
     public WavFile(int channels, int sampleRate, float[] data)
     {
-
         this.channels = channels;
         this.sampleRate = sampleRate;
         this.data = data;
@@ -21,11 +20,9 @@ public class WavFile
 
     public WavFile(int channels, int sampleRate)
     {
-
         this.channels = channels;
         this.sampleRate = sampleRate;
     }
-
 
     public int getChannels(){return channels;}
     public int getSampleRate(){return sampleRate;}

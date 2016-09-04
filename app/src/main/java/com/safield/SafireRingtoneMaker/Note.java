@@ -15,8 +15,7 @@ public class Note {
 	public static final int THIRTYTWO=32;
 	
 	
-	private int semitone, pitchMod, noteType, sampleLength;
-	private long period;
+	private int semitone, noteType;// sampleLength;
 
 	private TonePattern parent;
 
@@ -26,58 +25,33 @@ public class Note {
 		this.semitone = semitone;
 		
 		this.noteType = noteType;
-		setPeriod();
-		sampleLength = -1;
-	}
-	
-	public void modPitch(int mod)
-	{
-		pitchMod = mod;
-	}
-	
-	//returns period between notes in milliseconds
-	public void setPeriod()
-	{
-		long result = 60000;
-		            
-		int tempo = parent.getTempo();
-
-		if(noteType == WHOLE)tempo=tempo/4;
-		if(noteType == HALF)tempo=tempo/2;
-		if(noteType == THIRD)tempo=(int) (tempo/1.333333);
-		if(noteType == SIXTH)tempo=(int) (tempo*1.5);
-		if(noteType == EIGHT)tempo=tempo*2;
-		if(noteType == TWELVTH)tempo=tempo*3;
-		if(noteType == SIXTEENTH)tempo=tempo*4;
-		if(noteType == THIRTYTWO)tempo=tempo*8;
-		
-		period = result/tempo;
 	}
 
-	public int getPeriodInSmps()
+	public int getLengthInSamples(int tempo)
 	{
+        if (tempo <= 0)
+            throw new AssertionError("Note.getLengthInSamples - tempo value <= 0");
+
 		int result;
 
-        // if sampleLength > 0 that means tail has been enabled, and this note should ring on
-		if(sampleLength > 0)
-			result = sampleLength;
-		else
-			result = (int) (44.1*period);
+        if(noteType == WHOLE)tempo=tempo/4;
+        if(noteType == HALF)tempo=tempo/2;
+        if(noteType == THIRD)tempo=(int) (tempo/1.333333);
+        if(noteType == SIXTH)tempo=(int) (tempo*1.5);
+        if(noteType == EIGHT)tempo=tempo*2;
+        if(noteType == TWELVTH)tempo=tempo*3;
+        if(noteType == SIXTEENTH)tempo=tempo*4;
+        if(noteType == THIRTYTWO)tempo=tempo*8;
+
+        int period = 60000/tempo;
+
+        result = (int) Math.ceil(44.1 * period);
 
 		return result;
 	}
-	
-	
-	public void enableTail(int sampleLength)
+
+	public int getSemitone()
 	{
-		this.sampleLength = sampleLength;
+        return semitone;
 	}
-	
-	
-	public float getPitch()
-	{
-		return (float) Math.pow(2, (semitone + pitchMod) / 12.0);
-	}
-	
-	
 }

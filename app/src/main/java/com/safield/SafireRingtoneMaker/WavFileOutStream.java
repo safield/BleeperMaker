@@ -15,25 +15,15 @@ public class WavFileOutStream {
 	
 	private DataOutputStream stream;
 	private String path;
-	Context ctx;
-	
-	public WavFileOutStream(Context ctx,String fileName,int directory)
+
+	public WavFileOutStream(String fileName , String directory)
 	{
-			this.ctx=ctx;
-			File file=null;
+			File file = null;
 		
-			if(directory == ToneMaker.NOTIFICATION)
-			{
-				file = new File(Environment.getExternalStoragePublicDirectory(
-						Environment.DIRECTORY_NOTIFICATIONS), fileName+".wav");
-			}
-			else if(directory==ToneMaker.RINGTONE)
-			{
-				file = new File(Environment.getExternalStoragePublicDirectory(
-						Environment.DIRECTORY_RINGTONES), fileName+".wav");
-			}
-				
-			path=file.getAbsolutePath();
+            file = new File(Environment.getExternalStoragePublicDirectory(
+                    directory), fileName+".wav");
+
+			path = file.getAbsolutePath();
 			
 			try {
 				FileOutputStream fileOut = new FileOutputStream(file);
@@ -42,11 +32,6 @@ public class WavFileOutStream {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-		
-		
 	}
 	
 	public void writeShort(short out) 
@@ -93,8 +78,6 @@ public class WavFileOutStream {
 	public void writeIntSwapped(int out) 
 	{
 		byte[] bytes = new byte[4];
-		
-		
 		bytes[0] = (byte)(out & 0xff);
 		bytes[1] = (byte)((out >> 8) & 0xff);
 		bytes[2] = (byte)((out >> 16) & 0xff);
@@ -103,7 +86,6 @@ public class WavFileOutStream {
 		try {
 			stream.write(bytes);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -142,11 +124,6 @@ public class WavFileOutStream {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		JavAud.printArrayToFile(compare, "shortOutput.txt", 100);
-		JavAud.printArrayToFile(data, "floatOutput.txt", 100);
-		//JavAud.ensureConvesion(data, compare);
-		System.out.println("Out data range="+min+" to "+max);
 	}
 	
 	
@@ -180,7 +157,7 @@ public class WavFileOutStream {
 	{
 	try {
 			stream.close();
-			MediaScannerConnection.scanFile(ctx, new String[]{path}, null, null);
+			MediaScannerConnection.scanFile(LocalApp.getAppContext(), new String[]{path}, null, null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

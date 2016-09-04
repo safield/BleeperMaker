@@ -41,7 +41,7 @@ public class WavFileInStream
 	}
 	public int readInt() 
 	{
-		int result=0;
+		int result = 0;
 		try {
 			result=stream.readInt();
 		} catch (IOException e) {

@@ -21,19 +21,31 @@
         <item>Poly Sqaure</item>
     </string-array>
 
-        <string name="sound">Sound</string>
-        <string name="pattern">Pattern</string>
-        <string name="preview">Play</string>
-        <string name="pitch">Pitch</string>
-        <string name="speed">Speed</string>
-        <string name="loop">Loop</string>
-        <string name="mercury">Mercury</string>
+    <string-array name="patterns_array">
+        <item>Sine</item>
+        <item>Sine Tail</item>
+        <item>Saw</item>
+        <item>Square</item>
+        <item>Saw Plucked</item>
+        <item>Square Plucked</item>
+        <item>Poly Saw</item>
+        <item>Poly Sqaure</item>
+    </string-array>
+
+    <string name="sound">Sound</string>
+    <string name="pattern">Pattern</string>
+    <string name="preview">Play</string>
+    <string name="pitch">Pitch</string>
+    <string name="speed">Speed</string>
+    <string name="loop">Loop</string>
+    <string name="mercury">Mercury</string>
 
     <string name="title_activity_export">Export</string>
     <string name="export_message">Enter a name, and export your tone to the Android system.</string>
 
     <string name="action_settings">Settings</string>
-    
-    
-    
+    <string name="title_activity_act_save_file">Save File</string>
+    <string name="title_activity_act_load_file">Load</string>
+
+
 </resources>

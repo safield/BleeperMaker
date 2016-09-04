@@ -1,232 +1,386 @@
 package com.safield.SafireRingtoneMaker;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.lang.reflect.Field;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.Date;
+import java.util.List;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.util.Log;
 
-/*
- * This class generates the output tones based on its sample and pattern
+/**
+ *  Singleton Class ToneMaker - this is the model
  */
 public class ToneMaker {
 
-	public static final int NOTIFICATION = 1234;
-	public static final int  RINGTONE = 2345;
-	private static final int SMP_RATE = 44100;
-	private final int NUM_RAW_SAMPLES = 1; //this must match number of samples in raw folder
-	public static int glbPitch;
+    public static final int SMP_RATE = 44100;
+    public static final int NUM_CHANNELS = 1;
 
-    private static ToneMaker instance = null;
+    public static final int MAX_LOOP = 10;
+    public static final int SEMITONE_MOD_OFFSET = -12;
+    public static final int SEMITONE_MOD_AMOUNT = 24;
+    public static final int TEMPO_MOD_OFFSET = -12;
+    public static final int TEMPO_MOD_AMOUNT = 24;
+    public static final int TEMPO_START = 100;
+    public static final int TEMPO_INC = 7;
 
-	private WavFile sample;
-	private TonePattern pattern;
-	private float[] outTrack;
-	private PatternList list;
+    private static final float ATTACK_DAMPEN = 234;
+    private static final float DECAY_DAMPEN = 976;
+
+    public enum ToneType {
+        RINGTONE,
+        NOTIFICATION
+    }
+
+    /**
+     *  Listener inteface for callBack when internal audioTrack completes play of one generated tone
+     *  The UI using ToneMaker class does not know about sample play times and markers, so we don't want
+     *  to expose AudioTrack.OnPlaybackPositionUpdateListener
+     */
+    public interface OnPlayCompleteListener {
+        public void onPlayComplete();
+    }
+
+    /**
+     * represents the info describing a save file
+     */
+    public class SaveInfo {
+
+        public Date lastModified;
+        public String name;
+
+        public SaveInfo (long lastModifed , String name) {
+            this.lastModified = new Date(lastModifed);
+            this.name = name;
+        }
+    }
+
+    /**
+     * This represents the State of the Tonemaker, it is intended to be saved to and loaded from file
+     */
+    private class State {
+
+        public int semitoneMod; // how many semitones up or down we want to modify the pitch of the sample
+        public int patternIndex;
+        public int sampleIndex;
+        public int loop;
+        public int tempo;
+    }
+
+    private static final int SAMPLE_RATE = 44100;
+
+    // this is a singleton
+    private static ToneMaker instance;
+
+    // State and save to file stuff
+    private State state;
+    private boolean loadedSave;
+    private String loadedSaveName;
+
+    // stuff that makes the magic happen
+    private AudioTrack audioTrack;
+    private AudioTrack.OnPlaybackPositionUpdateListener audiotrackListener;
+    private OnPlayCompleteListener playCompleteListener;
+	private TonePatternList tonePatternList;
 	private ArrayList<WavFile> samples;
-	private AudioTrack track;
-	private boolean played;
-	private int loop,
-                repeat,
-                spacing,
-                tempo;
 
-	Context ctx;
-	
-	public ToneMaker(Context ctx)
+    public static ToneMaker Instance()
+    {
+        if (instance == null)
+            instance = new ToneMaker();
+        return instance;
+    }
+
+	private ToneMaker()
 	{
+        // load the defaults
+        state = new State();
+        state.loop = 1;
+        state.patternIndex = 0;
+        state.semitoneMod = 0;
+        setTempoMod(0);
 
-        this.ctx = ctx;
-
-        tempo = 154;
-		loop = 1;
-		repeat = 1;
-		spacing = 0;
-        played = false;
-        glbPitch = 0;
+        loadedSaveName = "";
 
         readSamples();
-		setSample(0);
-		list = new PatternList(ctx,R.raw.patterns);
-		pattern = list.get(0);
-		initAudio();
+        setSampleIndex(0);
+        tonePatternList = new TonePatternList(LocalApp.getAppContext() , R.raw.patterns);
+
+
+        audiotrackListener = new AudioTrack.OnPlaybackPositionUpdateListener() {
+            @Override
+            public void onMarkerReached(AudioTrack audioTrack) {
+
+                if (playCompleteListener != null)
+                    playCompleteListener.onPlayComplete();
+            }
+            @Override
+            public void onPeriodicNotification(AudioTrack audioTrack) {}
+        };
 	}
 
-	public void setPitch(int semitone)
-	{
-		glbPitch = semitone;
+    public void setLoop(int loop)
+    {
+        this.state.loop = loop;
+    }
+
+    public int getLoop () {
+        return state.loop;
+    }
+
+	public void setSemitoneMod(int semitone) {
+		state.semitoneMod = semitone;
 	}
 
-    public void setLoop(int loop) { this.loop = loop; }
+    public int getSemitoneMod() {
+        return state.semitoneMod;
+    }
 
-	public String getPatternName(int index)
+    public void setOnPlayCompleteListener(OnPlayCompleteListener listener) {
+        playCompleteListener = listener;
+    }
+
+	public List<String> getPatternNames()
 	{
-		return list.get(index).getName();
-	}
 
-	public String[] patternNames()
-	{
+        List<String> result = new ArrayList<String>();
 
-		String[]result = new String[list.size()];
-		
-		for(int i = 0; i < list.size(); i++)
-			result[i]=list.get(i).getName();
+		for(int i = 0; i < tonePatternList.size(); i++)
+			result.add(tonePatternList.get(i).getName());
 
         return result;
 	}
-	
-	public void logPatternList()
-	{
-		Log.i("test", list.toString());
+
+	public void setPatternIndex(int index) {
+        state.patternIndex = index;
 	}
 
-	public void setPattern(int index)
+    public int getPatternIndex() {
+        return state.patternIndex;
+    }
+
+    public void setTempoMod(int speed) {
+        this.state.tempo = TEMPO_START + speed * TEMPO_INC;
+    }
+
+    public int getTempoMod() {
+        return (state.tempo - TEMPO_START) / TEMPO_INC;
+    }
+
+    public void setSampleIndex(int position) {
+        state.sampleIndex = position;
+	}
+
+    public int getSampleIndex() {
+        return state.sampleIndex;
+    }
+
+    public String getSaveName() {
+        return loadedSaveName;
+    }
+
+    public boolean writeStateToFile(String fileName) {
+
+        boolean success = false;
+
+        try {
+
+            DataOutputStream dos = new DataOutputStream(LocalApp.getAppContext().openFileOutput(fileName+".save", Context.MODE_PRIVATE));
+            dos.writeInt(state.loop);
+            dos.writeInt(state.patternIndex);
+            dos.writeInt(state.sampleIndex);
+            dos.writeInt(state.semitoneMod);
+            dos.writeInt(state.tempo);
+            dos.close();
+
+            Log.d("ToneMaker.writeStateToFile" , "Successfully saved file name = "+fileName);
+            success = true;
+        } catch (IOException i) {
+            Log.e("ToneMaker.writeStateToFile" , i.toString());
+            i.printStackTrace();
+        }
+
+        return success;
+    }
+
+    public boolean loadStateFromFile(String fileName) {
+
+        boolean success = false;
+
+        try {
+            DataInputStream dis = new DataInputStream(LocalApp.getAppContext().openFileInput(fileName));
+            state.loop = dis.readInt();
+            state.patternIndex = dis.readInt();
+            state.sampleIndex = dis.readInt();
+            state.semitoneMod = dis.readInt();
+            state.tempo = dis.readInt();
+            Log.d("ToneMaker.loadStateFromFile" , "Successfully loaded file name = "+fileName);
+            success = true;
+        } catch (IOException i) {
+            Log.e("ToneMaker.loadStateFromFile" , i.toString());
+            i.printStackTrace();
+        }
+
+        return success;
+    }
+
+    public ArrayList<SaveInfo> getSaveInfos ()
+    {
+        ArrayList<SaveInfo> results = new ArrayList<SaveInfo>();
+        File fileDir = LocalApp.getAppContext().getFilesDir();
+        String[] allFiles = fileDir.list();
+        File tempFile;
+
+        for (int i = 0; i < allFiles.length; i++) {
+
+            String substring = allFiles[i].substring(allFiles[i].length() - 5, allFiles[i].length());
+
+            if (substring.equals(".save")) {
+
+                tempFile = new File(fileDir , allFiles[i]);
+
+                if (!tempFile.exists())
+                    throw new AssertionError("ToneMaker.GetSaveInfos : file IO error");
+
+                results.add(new SaveInfo(tempFile.lastModified() , allFiles[i]));
+            }
+        }
+
+        return results;
+    }
+
+    public void onPause()
+    {
+        audioTrack.release();
+    }
+
+    /**
+     * This method creates a buffer of PCM data that is the complete output tone ready to be played or written to file
+     */
+	private float[] createTone()
 	{
 
-        pattern = list.get(index);
-		pattern.setTempo(tempo);
-		Log.wtf("test", pattern.toString());
-	}
-
-	public void setTempo(int tempo)
-	{
-        this.tempo = tempo;
-
-		if(pattern != null)
-			pattern.setTempo(tempo);
-	}
-	
-	public void readSampleFile(String name)
-	{
-        WavFileReader reader = new WavFileReader();
-		sample=reader.readWave(name);
-	}
-	
-	public void setPattern(TonePattern pattern)
-	{
-		this.pattern = pattern;
-	}
-	
-	public void setSample(int position)
-	{
-		sample = samples.get(position);
-	}
-	
-	/*
-	 * This method plays generates a wave file using one single sample,
-	 * and note information that specifies duration and pitch of sample.
-	 */
-	public void playTrack()
-	{
-		generateOutTrack(null,0,true);
-	}
-	public void generateOutTrack(String fileName,int directory)
-	{
-		generateOutTrack(fileName,directory,false);
-	}
-	private void generateOutTrack(String fileName,int directory, boolean play)
-	{
-		String debug="";
-		
 		Note currNote;
+		float[] currSample = samples.get(state.sampleIndex).getData();
+        TonePattern pattern = tonePatternList.get(state.patternIndex);
 
-		float[] currSample = sample.getData();//the pcm data of the sample to be used
-		int sampleLength = (int)(currSample.length*Math.pow(2, glbPitch/12.0));//get sample length after pitch
-		
-		if(loop >1)
-            pattern.setTail(false);
-		
-		pattern.setSampleLength(sampleLength); //send pattern the sampleLength after pitch
-		pattern.pitchMod(glbPitch);
-		float[] output = new float[pattern.getPlayTimeInSmps() * loop * repeat + ((repeat-1) * spacing)];//returns total play time of pattern in #samples.
+        // we determine the final length of the output sample before we start generating it
+        int total_length = 0;
+
+        // sum the length of all the notes
+        for (int i = 0; i < pattern.getNumNotes(); i++)
+            total_length += pattern.getNote(i).getLengthInSamples(state.tempo);
+
+        total_length *= state.loop;
+
+        float[] output = new float[total_length];
 		int currSampleLength;
-		debug="Sample length="+((int)(currSample.length*Math.pow(2, glbPitch/12.0)))+'\n';
-		
-		int debugCount = 1;
-		int noteLength = 0;
+
 		int outIndex = 0;
-        int sampleIndex = 0;
+        int index = 0;
 
         float pitch;
 		float linearIntp = 0;
 		float phasePtr = 0;
 
-		for(int q = 0; q < repeat; q++) {
-			for(int j = 0; j < loop; j++) {
-				while((currNote = pattern.nextNote()) != null) { //each iteration plays one note
+        for(int i = 0; i < state.loop; i++) {
+            for (int k = 0; k < pattern.getNumNotes(); k++) {
 
-                    noteLength = currNote.getPeriodInSmps();//length of current note in samples
+                currNote = pattern.getNote(k);
+                pitch = semitoneToPitch(currNote.getSemitone() + state.semitoneMod);
 
-                    debug = debug + "note " + debugCount + " length=" + noteLength + '\n';
-                    debugCount++;
+                int currNoteLength = currNote.getLengthInSamples(state.tempo);
 
-                    pitch = currNote.getPitch(); //pitch of current note
-                    currSampleLength = (int) Math.ceil(currSample.length * (1 / pitch) - 1);
-                    debug = debug + (currSampleLength) + '\n';
+                for (int j = 0; j < currNoteLength; j++) {
 
-                    for (int i = 0; i < noteLength; i++) {    //run for length of note
+                    index = (int) phasePtr;
+                    linearIntp = phasePtr - index;
 
-                        sampleIndex = (int) phasePtr; //floor of floating point index
-                        linearIntp = phasePtr - sampleIndex;
+                    //if we are not at end of sample copy data to output
+                    if (index < currSample.length - 1)
+                        output[outIndex] = (currSample[index + 1] * linearIntp) + (currSample[index] * (1 - linearIntp)); // pitch shift linear interp
+                    else
+                        output[outIndex] = 0;
 
-                        //if we are not at end of sample copy data to output
-                        if (sampleIndex < currSampleLength)
-                            output[outIndex] = (currSample[sampleIndex + 1] * linearIntp) + (currSample[sampleIndex] * (1 - linearIntp)); // pitch shift linear interp
-                        else
-                            output[outIndex] = 0; // silence
+                    // this will increasingly dampen the onset and end volume of the sample to prevent popping artifacts
+                    if (j < ATTACK_DAMPEN)
+                        output[outIndex] *= j / ATTACK_DAMPEN;
+                    else if (j > currNoteLength - DECAY_DAMPEN)
+                        output[outIndex] *= (j - currNoteLength) / -DECAY_DAMPEN;
 
-                        outIndex++;
-                        phasePtr = phasePtr + pitch;
-                    }
-
-                    phasePtr = 0;
+                    outIndex++;
+                    phasePtr += pitch;
                 }
-			}
 
-			//if(q < repeat-1)
-				//outIndex = outIndex + spacing;
+                phasePtr = 0;
+            }
 		}
 
-		JavAud.quietEnd(output);
-
-		if(!play) {
-
-			WavFileWriter writer = new WavFileWriter(ctx);
-			writer.writeWave(new WavFile(1, JavAud.GLB_SMP_RATE, output), fileName , directory);
-		}
-		else {
-			
-			playTrack(output);
-			/*
-			 * short[] shorts = JavAud.floatToShort(output);
-			if(played)
-			{
-				track.stop();
-				track.flush();
-				track.reloadStaticData();
-			}
-				
-			track.write(shorts, 0, shorts.length);
-			track.play();
-			played=true;*/
-		}
+        return output;
 	}
 
-	public void playSample(String name)
-	{
+    /**
+     *  This method takes the output PCM data from CreateTone, and the plays it using AudioTrack
+     *  Return the time in milliseconds for the play to complete
+     */
+    public int play() {
 
-	}
+        float[] output = createTone();
+
+        stop();
+
+        audioTrack = new AudioTrack(AudioManager.STREAM_RING, 44100,
+                AudioFormat.CHANNEL_OUT_MONO,
+                AudioFormat.ENCODING_PCM_16BIT,
+                (output.length*4),
+                AudioTrack.MODE_STATIC);
+
+        if (audiotrackListener != null) {
+            Log.e("ToneMaker.ToneMaker" , "Listener set on audiotrack (not null)");
+            audioTrack.setPlaybackPositionUpdateListener(audiotrackListener);
+        }
+
+        short[] result =  new short[output.length];
+
+        for(int i = 0; i < output.length; i++)
+            result[i] = (short) ((output[i])*32768);
+
+        audioTrack.setNotificationMarkerPosition(output.length-1);
+
+        audioTrack.write(result, 0, output.length);
+        audioTrack.play();
+
+        return (int)(output.length / (SMP_RATE / 1000.0f)); // play time in milliseconds
+    }
+
+    public void stop() {
+        if (audioTrack != null)
+            audioTrack.release();
+    }
+
+
+    /**
+     * This method takes the output PCM data of creatTone and then writes it to file [fileName].wav in directory [director]
+     */
+    public void writeToneToFile(String fileName, String directory)
+    {
+        WavFileWriter writer = new WavFileWriter();
+        writer.writeWave(new WavFile(1, SAMPLE_RATE, createTone()), fileName, directory);
+    }
 
 	private void readSamples()
 	{
 		WavFileReader reader = new WavFileReader();
 		samples = new ArrayList<WavFile>();
+
+        Context ctx = LocalApp.getAppContext();
 
 		samples.add(reader.readWave(ctx, R.raw.sine));
 		samples.add(reader.readWave(ctx, R.raw.sine_tail));
@@ -236,47 +390,14 @@ public class ToneMaker {
 		samples.add(reader.readWave(ctx, R.raw.plucked_square));
 		samples.add(reader.readWave(ctx, R.raw.poly_saw));
 		samples.add(reader.readWave(ctx, R.raw.poly_square));
-	}
-	
-	private void initAudio()
-	{
-		/*int buffsize = AudioTrack.getMinBufferSize(44100, AudioFormat.CHANNEL_OUT_MONO, 
-                AudioFormat.ENCODING_PCM_16BIT);
-		//create an audiotrack object
-		//track = new AudioTrack(AudioManager.STREAM_RING, 44100, 
-        AudioFormat.CHANNEL_OUT_MONO, 
-        AudioFormat.ENCODING_PCM_16BIT, 
-        buffsize*32, 
-        AudioTrack.MODE_STATIC);*/
-	}
-	
-	private void playTrack(float[] output)
-	{
-		if(track != null) {
 
-			track.pause();
-			track.flush();
-			track.release();
-		}
-		
-		track = new AudioTrack(AudioManager.STREAM_RING, 44100, 
-        AudioFormat.CHANNEL_OUT_MONO, 
-        AudioFormat.ENCODING_PCM_16BIT, 
-        (output.length*4), 
-        AudioTrack.MODE_STATIC);
-		
-		track.write(JavAud.floatToShort(output), 0, output.length);
-		track.play();
+        for ( int i = 0; i < samples.size(); i++)
+            if (samples.get(i).getChannels() != NUM_CHANNELS)
+                throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of samples = "+samples.get(i).getChannels()+" expected NUM_CHANNELS = "+NUM_CHANNELS);
 	}
 
-	private void saveProject(String name)
-	{
-		FileOutputStream outputStream;
-
-		try {
-			outputStream = ctx.openFileOutput(name , Context.MODE_PRIVATE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    private float semitoneToPitch(int semitone)
+    {
+        return (float) Math.pow(2, semitone / 12.0);
+    }
 }

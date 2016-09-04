@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/gloss_button_flatten_pink" android:duration="456" />
+    <item android:drawable="@drawable/gloss_button_flatten_pink_blink" android:duration="567" />
+</animation-list>

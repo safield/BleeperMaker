@@ -5,17 +5,15 @@ import android.content.Context;
 public class WavFileWriter {
 	
 	private WavFileOutStream stream;
-	private Context ctx;
-	
-	public WavFileWriter(Context ctx)
+
+	public WavFileWriter()
 	{
-		this.ctx = ctx;
 	}
 	
-	public void writeWave(WavFile outWave, String fileName, int directory)
+	public void writeWave(WavFile outWave, String fileName, String directory)
 	{
 
-        stream = new WavFileOutStream(ctx,fileName,directory);
+        stream = new WavFileOutStream(fileName , directory);
 		int dataSize = outWave.getDataSize()*2; // in bytes
 		int smpRate = outWave.getSampleRate();
 		int channels = outWave.getChannels();
