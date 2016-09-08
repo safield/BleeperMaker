@@ -18,18 +18,11 @@ import android.widget.TextView;
 
 public class ActMain extends Activity
 {
-    public static final int SOUND_BROWSER = 123;
-    public static final int PATTERN_BROWSER = 234;
-
-	private final int SOUND_BROWSE_REQUEST = 999;
-    private final int PATTERN_BROWSE_REQUEST = 888;
-
     private final int MINIMUM_BLINK_TIME_MS = 2000;
 
-    // this is the model
     private ToneMaker toneMaker;
 
-    // this is all the  UI components
+    // UI components
     private Button playButton;
     private AnimationDrawable playButtonBlinkAnimation;
 
