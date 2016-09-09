@@ -16,6 +16,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 public class ActMain extends Activity
 {
     private final int MINIMUM_BLINK_TIME_MS = 2000;

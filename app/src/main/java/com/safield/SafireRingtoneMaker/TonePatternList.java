@@ -26,6 +26,9 @@ public class TonePatternList {
         return list.size();
     }
 
+    /**
+     * There should be a much better comment here detailing the format of the patterns.txt flat file.
+     */
     private void readPatterns(Context ctx,int id)
     {
         try {

@@ -32,8 +32,4 @@ public class TonePattern {
     {
         return notes.get(index);
     }
-
-	public String toString() {
-		return name +" "+notes.size()+" notes";
-	}
 }

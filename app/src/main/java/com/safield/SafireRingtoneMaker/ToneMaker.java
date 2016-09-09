@@ -20,9 +20,6 @@ import android.util.Log;
  */
 public class ToneMaker {
 
-    public static final int SMP_RATE = 44100;
-    public static final int NUM_CHANNELS = 1;
-
     public static final int MAX_LOOP = 10;
     public static final int SEMITONE_MOD_OFFSET = -12;
     public static final int SEMITONE_MOD_AMOUNT = 24;
@@ -34,11 +31,6 @@ public class ToneMaker {
     private static final float ATTACK_DAMPEN = 234;
     private static final float DECAY_DAMPEN = 976;
 
-    public enum ToneType {
-        RINGTONE,
-        NOTIFICATION
-    }
-
     /**
      *  Listener inteface for callBack when internal audioTrack completes play of one generated tone
      *  The UI using ToneMaker class does not know about sample play times and markers, so we don't want
@@ -49,7 +41,7 @@ public class ToneMaker {
     }
 
     /**
-     * represents the info describing a save file
+     * Info describing a save file
      */
     public class SaveInfo {
 
@@ -336,7 +328,7 @@ public class ToneMaker {
 
         stop();
 
-        audioTrack = new AudioTrack(AudioManager.STREAM_RING, 44100,
+        audioTrack = new AudioTrack(AudioManager.STREAM_RING, SAMPLE_RATE,
                 AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT,
                 (output.length*4),
@@ -357,7 +349,7 @@ public class ToneMaker {
         audioTrack.write(result, 0, output.length);
         audioTrack.play();
 
-        return (int)(output.length / (SMP_RATE / 1000.0f)); // play time in milliseconds
+        return (int)(output.length / (SAMPLE_RATE / 1000.0f)); // play time in milliseconds
     }
 
     public void stop() {
@@ -392,8 +384,8 @@ public class ToneMaker {
 		samples.add(reader.readWave(ctx, R.raw.poly_square));
 
         for ( int i = 0; i < samples.size(); i++)
-            if (samples.get(i).getChannels() != NUM_CHANNELS)
-                throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of samples = "+samples.get(i).getChannels()+" expected NUM_CHANNELS = "+NUM_CHANNELS);
+            if (samples.get(i).getChannels() != 1)
+                throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of samples = "+samples.get(i).getChannels()+" expected NUM_CHANNELS = 1");
 	}
 
     private float semitoneToPitch(int semitone)

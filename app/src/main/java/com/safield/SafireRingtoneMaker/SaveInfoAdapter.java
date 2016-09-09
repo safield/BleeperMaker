@@ -11,9 +11,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Scott on 5/6/2016.
- */
 public class SaveInfoAdapter extends BaseAdapter {
 
     ArrayList<ToneMaker.SaveInfo> saveInfos;
