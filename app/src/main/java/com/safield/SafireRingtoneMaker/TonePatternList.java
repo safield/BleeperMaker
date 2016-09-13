@@ -27,7 +27,38 @@ public class TonePatternList {
     }
 
     /**
-     * There should be a much better comment here detailing the format of the patterns.txt flat file.
+     * The patterns file contains the following elements
+     *
+     * [sameple_name] = this is used by the UI
+     * [note_length] = Possible notes are 1 = whole  2 = half  4 = quarter  8 = eight  16 = sixteenth  32 = thrity second
+     * [note_pitch] = semitones up or down to modify the pitch in relation to the sameples pitch. eg - 1 to pitch 1 semitone down or + 7 to pitch up 7 semitones
+     *
+     * The patterns file follows the following format
+     *
+     * [pattern_name]
+     * [note_legnth] [note_pitch]
+     * [note_legnth] [note_pitch]
+     * [...]         [...]
+     * [pattern_name]
+     * [note_legnth] [note_pitch]
+     * [note_legnth] [note_pitch]
+     * [...]         [...]
+     *
+     * So defining 3 patterns might look as follows....
+     *
+     * test t
+     * 16 + 0
+     * 16 + 2
+     * pingpong t
+     * 16 + 6
+     * 16 - 6
+     * 16 + 6
+     * march t
+     * 8 + 0
+     * 16 + 0
+     * 16 + 0
+     * 8 + 0
+     *
      */
     private void readPatterns(Context ctx,int id)
     {

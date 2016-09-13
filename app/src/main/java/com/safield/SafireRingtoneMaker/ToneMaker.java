@@ -73,10 +73,10 @@ public class ToneMaker {
 
     // State and save to file stuff
     private State state;
+    private ArrayList<SaveInfo> saveinfoCached;
     private boolean loadedSave;
     private String loadedSaveName;
 
-    // stuff that makes the magic happen
     private AudioTrack audioTrack;
     private AudioTrack.OnPlaybackPositionUpdateListener audiotrackListener;
     private OnPlayCompleteListener playCompleteListener;
@@ -178,7 +178,7 @@ public class ToneMaker {
         return loadedSaveName;
     }
 
-    public boolean writeStateToFile(String fileName) {
+    public boolean writeSaveFile(String fileName) {
 
         boolean success = false;
 
@@ -192,10 +192,12 @@ public class ToneMaker {
             dos.writeInt(state.tempo);
             dos.close();
 
-            Log.d("ToneMaker.writeStateToFile" , "Successfully saved file name = "+fileName);
+            Log.d("ToneMaker.writeSaveFile" , "Successfully saved file name = "+fileName);
+            saveinfoCached = null;
+            loadedSaveName = fileName;
             success = true;
         } catch (IOException i) {
-            Log.e("ToneMaker.writeStateToFile" , i.toString());
+            Log.e("ToneMaker.writeSaveFile" , i.toString());
             i.printStackTrace();
         }
 
@@ -207,13 +209,14 @@ public class ToneMaker {
         boolean success = false;
 
         try {
-            DataInputStream dis = new DataInputStream(LocalApp.getAppContext().openFileInput(fileName));
+            DataInputStream dis = new DataInputStream(LocalApp.getAppContext().openFileInput(fileName+".save"));
             state.loop = dis.readInt();
             state.patternIndex = dis.readInt();
             state.sampleIndex = dis.readInt();
             state.semitoneMod = dis.readInt();
             state.tempo = dis.readInt();
             Log.d("ToneMaker.loadStateFromFile" , "Successfully loaded file name = "+fileName);
+            loadedSaveName = fileName;
             success = true;
         } catch (IOException i) {
             Log.e("ToneMaker.loadStateFromFile" , i.toString());
@@ -225,27 +228,30 @@ public class ToneMaker {
 
     public ArrayList<SaveInfo> getSaveInfos ()
     {
-        ArrayList<SaveInfo> results = new ArrayList<SaveInfo>();
-        File fileDir = LocalApp.getAppContext().getFilesDir();
-        String[] allFiles = fileDir.list();
-        File tempFile;
 
-        for (int i = 0; i < allFiles.length; i++) {
+        if (saveinfoCached == null) {
 
-            String substring = allFiles[i].substring(allFiles[i].length() - 5, allFiles[i].length());
+            saveinfoCached = new ArrayList<SaveInfo>();
+            File fileDir = LocalApp.getAppContext().getFilesDir();
+            String[] allFiles = fileDir.list();
+            File tempFile;
 
-            if (substring.equals(".save")) {
+            for (int i = 0; i < allFiles.length; i++) {
 
-                tempFile = new File(fileDir , allFiles[i]);
+                String substring = allFiles[i].substring(allFiles[i].length() - 5, allFiles[i].length());
 
-                if (!tempFile.exists())
-                    throw new AssertionError("ToneMaker.GetSaveInfos : file IO error");
+                if (substring.equals(".save")) {
+                    tempFile = new File(fileDir, allFiles[i]);
 
-                results.add(new SaveInfo(tempFile.lastModified() , allFiles[i]));
+                    if (!tempFile.exists())
+                        throw new AssertionError("ToneMaker.GetSaveInfos : file IO error");
+
+                    saveinfoCached.add(new SaveInfo(tempFile.lastModified(), allFiles[i].substring(0, allFiles[i].length() - 5)));
+                }
             }
         }
 
-        return results;
+        return saveinfoCached;
     }
 
     public void onPause()
