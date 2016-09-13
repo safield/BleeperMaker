@@ -29,7 +29,7 @@
         android:lines="1"
         android:singleLine="true"
         android:maxLines="1"
-        android:maxLength="26"
+        android:maxLength="14"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:imeOptions="actionDone"
@@ -42,7 +42,7 @@
         android:layout_alignStart="@+id/saveFileLabel"
         android:gravity="center"
         android:inputType="text"
-        android:digits="0,1,2,3,4,5,6,7,8,9,qwertzuiopasdfghjklyxcvbnm,_,-"/>
+        android:digits="0,1,2,3,4,5,6,7,8,9,qwertzuiopasdfghjklyxcvbnm"/>
 
     <Button
         android:layout_width="wrap_content"
