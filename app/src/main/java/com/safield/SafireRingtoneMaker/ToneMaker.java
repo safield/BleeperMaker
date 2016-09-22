@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class ToneMaker {
     private static final float DECAY_DAMPEN = 976;
 
     /**
-     *  Listener inteface for callBack when internal audioTrack completes play of one generated tone
-     *  The UI using ToneMaker class does not know about sample play times and markers, so we don't want
+     *  Listener inteface for callBack when audioTrack completes play of one generated tone
+     *  The UI that is using ToneMaker class does not know about sample play times and markers, so we don't want
      *  to expose AudioTrack.OnPlaybackPositionUpdateListener
      */
     public interface OnPlayCompleteListener {
@@ -43,7 +44,7 @@ public class ToneMaker {
     /**
      * Info describing a save file
      */
-    public class SaveInfo {
+    public class SaveInfo implements Comparable<SaveInfo> {
 
         public Date lastModified;
         public String name;
@@ -51,6 +52,10 @@ public class ToneMaker {
         public SaveInfo (long lastModifed , String name) {
             this.lastModified = new Date(lastModifed);
             this.name = name;
+        }
+
+        public int compareTo (SaveInfo compare){
+            return compare.lastModified.compareTo(this.lastModified); // invert date comparison to get order of newest first
         }
     }
 
@@ -226,6 +231,25 @@ public class ToneMaker {
         return success;
     }
 
+    public void deleteAllSaves ()
+    {
+
+        File fileDir = LocalApp.getAppContext().getFilesDir();
+        String[] allFiles = fileDir.list();
+        File tempFile;
+        saveinfoCached = null;
+
+        for (int i = 0; i < allFiles.length; i++) {
+
+            String substring = allFiles[i].substring(allFiles[i].length() - 5, allFiles[i].length());
+
+            if (substring.equals(".save")) {
+                tempFile = new File(fileDir, allFiles[i]);
+                tempFile.delete();
+            }
+        }
+    }
+
     public ArrayList<SaveInfo> getSaveInfos ()
     {
 
@@ -242,13 +266,11 @@ public class ToneMaker {
 
                 if (substring.equals(".save")) {
                     tempFile = new File(fileDir, allFiles[i]);
-
-                    if (!tempFile.exists())
-                        throw new AssertionError("ToneMaker.GetSaveInfos : file IO error");
-
                     saveinfoCached.add(new SaveInfo(tempFile.lastModified(), allFiles[i].substring(0, allFiles[i].length() - 5)));
                 }
             }
+
+            Collections.sort(saveinfoCached);
         }
 
         return saveinfoCached;
@@ -332,7 +354,7 @@ public class ToneMaker {
 
         float[] output = createTone();
 
-        stop();
+        stopAudioTrack();
 
         audioTrack = new AudioTrack(AudioManager.STREAM_RING, SAMPLE_RATE,
                 AudioFormat.CHANNEL_OUT_MONO,
@@ -358,9 +380,11 @@ public class ToneMaker {
         return (int)(output.length / (SAMPLE_RATE / 1000.0f)); // play time in milliseconds
     }
 
-    public void stop() {
-        if (audioTrack != null)
+    public void stopAudioTrack() {
+        if (audioTrack != null && audioTrack.getState() == AudioTrack.STATE_INITIALIZED) {
+            audioTrack.stop();
             audioTrack.release();
+        }
     }
 
 

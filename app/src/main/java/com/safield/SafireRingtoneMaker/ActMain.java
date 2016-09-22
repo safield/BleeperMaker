@@ -15,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ActMain extends Activity
@@ -81,8 +82,13 @@ public class ActMain extends Activity
                 startActivity(intent);
 				return true;
 			case R.id.load:
-                intent = new Intent(this, ActLoadFile.class);
-                startActivity(intent);
+                if (toneMaker.getSaveInfos().size() > 0) {
+                    intent = new Intent(this, ActLoadFile.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(this , "No files to load" , Toast.LENGTH_SHORT).show();
+                }
 				return true;
 			case R.id.export:
 				intent = new Intent(this, ActExport.class);
@@ -225,5 +231,11 @@ public class ActMain extends Activity
 
         toneSpinner.setOnItemSelectedListener(spinnerListener);
         patternSpinner.setOnItemSelectedListener(spinnerListener);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        toneMaker.stopAudioTrack();
     }
 }

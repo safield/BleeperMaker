@@ -6,6 +6,7 @@
     <string name="action_load">Load</string>
     <string name="action_save">Save</string>
     <string name="action_export">Export</string>
+    <string name="action_delete_saves">Delete All</string>
 
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>

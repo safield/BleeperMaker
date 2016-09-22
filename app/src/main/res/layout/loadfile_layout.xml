@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/loadfile_listview"
-        android:divider="@color/background"
+        android:divider="@color/divider"
         android:dividerHeight="1px"/>
 
 </LinearLayout>
