@@ -7,7 +7,7 @@
     <string name="action_save">Save</string>
     <string name="action_export">Export</string>
     <string name="action_delete_saves">Delete All</string>
-
+    <string name="delete_all_saves_warning">Delete all save files permanently?</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
 

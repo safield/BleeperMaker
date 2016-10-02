@@ -154,8 +154,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/pitch_seekbar"
+                    android:progressDrawable="@drawable/progress"
+                    android:thumb="@drawable/thumb"
                     android:layout_gravity="center_horizontal"
-                    android:indeterminate="false" />
+                    android:indeterminate="false"
+                    android:maxHeight="20dp"/>
             </LinearLayout>
         </LinearLayout>
 

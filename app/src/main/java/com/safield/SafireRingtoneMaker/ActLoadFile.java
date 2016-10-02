@@ -1,8 +1,10 @@
 package com.safield.SafireRingtoneMaker;
 
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ActLoadFile extends Activity {
+public class ActLoadFile extends FragmentActivity implements DeleteAllDialogFragment.DeleteAllDialogListener {
 
     private ListView mListView;
 
@@ -69,14 +71,24 @@ public class ActLoadFile extends Activity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.delete_all:
-                ToneMaker.Instance().deleteAllSaves();
-                mListView.setAdapter(new SaveInfoAdapter(this , ToneMaker.Instance().getSaveInfos()));
-                Toast.makeText(this, "Deleted all saves" , Toast.LENGTH_SHORT).show();
-                finish();
+                DeleteAllDialogFragment newDialog = new DeleteAllDialogFragment();
+                newDialog.show(getFragmentManager() , "deleteAllDialog");
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        ToneMaker.Instance().deleteAllSaves();
+        mListView.setAdapter(new SaveInfoAdapter(this , ToneMaker.Instance().getSaveInfos()));
+        Toast.makeText(this, "Deleted all saves" , Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
+    }
 }
