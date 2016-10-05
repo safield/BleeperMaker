@@ -1,18 +1,10 @@
 <resources>
 
-    <!--
-        Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-    -->
-    <style name="MenuItemTextAppearance">
-        <item name="android:textColor">@color/text_color_secondary</item>
-    </style>
-
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
-            Theme customizations available in newer API levels can go in
-            res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+        Theme customizations available in newer API levels can go in
+        res/values-vXX/styles.xml, while customizations related to
+        backward-compatibility can go here.
         -->
         <item name="android:colorBackground">@color/background</item>
         <item name="android:colorForeground">@color/common_signin_btn_dark_text_pressed</item>
@@ -23,4 +15,7 @@
         <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
     </style>
 
+    <style name="MenuItemTextAppearance">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
 </resources>
