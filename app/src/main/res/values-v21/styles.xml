@@ -1,18 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-        Base application theme for API 11+. This theme completely replaces
-        AppBaseTheme from res/values/styles.xml on API 11+ devices.
-    -->
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
-        <!-- API 11 theme customizations can go here. -->
+    <style name="AppBaseTheme" parent="android:Theme.Material.Light">
         <item name="android:colorBackground">@color/background</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:colorPrimary">@color/accent</item>
         <item name="android:colorForeground">@color/common_signin_btn_dark_text_pressed</item>
         <item name="android:textColorPrimary">@color/text_color_primary</item>
         <item name="android:textColorSecondary">@color/text_color_secondary</item>
+        <item name="android:textColorTertiary">@color/text_color_secondary</item>
         <item name="android:textColorSecondaryInverse">@color/text_color_inverse</item>
+        <item name="android:colorPrimaryDark">@color/background</item>
         <item name="android:textColor">@color/text_color_primary</item>
         <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
     </style>
+
 
 </resources>

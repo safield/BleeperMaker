@@ -69,7 +69,7 @@
                         android:text="Tone"
                         android:id="@+id/tone_label"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/text_color_primary" />
 
                     <Spinner
                         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                         android:text="Pattern"
                         android:id="@+id/pattern_label"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/text_color_primary" />
 
                     <Spinner
                             android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
                     android:text="Pitch"
                     android:id="@+id/pitch_label"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color_primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,14 +151,16 @@
                     android:layout_gravity="center_horizontal" />
 
                 <SeekBar
+                    android:splitTrack="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/pitch_seekbar"
                     android:progressDrawable="@drawable/progress"
-                    android:thumb="@drawable/thumb"
+                    android:thumb="@drawable/metal_seekbar_thumb"
                     android:layout_gravity="center_horizontal"
                     android:indeterminate="false"
-                    android:maxHeight="20dp"/>
+                    android:maxHeight="14dp"
+                    android:paddingTop="10dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -184,7 +186,7 @@
                     android:text="Speed"
                     android:id="@+id/speed_label"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color_primary" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -225,7 +227,7 @@
                     android:text="Loop"
                     android:id="@+id/loop_label"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/text_color_primary" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#bbbbcb</color>
+    <color name="background">#444444</color>
+    <color name="accent">#628BA6</color>
+    <color name="accent2">#628BA6</color>
     <color name="divider">#444444</color>
-    <color name="main">#ffffff</color>
+    <color name="main">#444444</color>
     <color name="contrast">#84ABAB</color>
     <color name="highcontrast">#E87D7D</color>
     <color name="black">#000000</color>
     <color name="spinner">#cceeff</color>
-    <color name="button_up">#324F69</color>
-    <color name="button_down">#09917B</color>
+    <color name="button_up">#324f69</color>
+    <color name="button_down">#ff0040</color>
     <color name="list_selected">#09917B</color>
+    <color name="text_color_primary">#ffffff</color>
+    <color name="text_color_secondary">#bbbbbb</color>
+    <color name="text_color_inverse">#aaaaaa</color>
 </resources>

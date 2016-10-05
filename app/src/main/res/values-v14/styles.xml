@@ -7,6 +7,13 @@
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="android:colorForeground">@color/common_signin_btn_dark_text_pressed</item>
+        <item name="android:textColorPrimary">@color/text_color_primary</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary</item>
+        <item name="android:textColorSecondaryInverse">@color/text_color_inverse</item>
+        <item name="android:textColor">@color/text_color_primary</item>
+        <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
     </style>
 
 </resources>
