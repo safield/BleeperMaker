@@ -37,3 +37,7 @@ build/
 
 #NDK
 obj/
+
+# sublime editor files
+*.sublime-project
+*.sublime-workspace

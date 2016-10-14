@@ -2,22 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@drawable/back_texture">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/button_frame"
-        android:paddingTop="4dp"
-        android:paddingBottom="3dp"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp">
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp">
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Preview"
+            android:text="@string/play"
             android:id="@+id/play_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
@@ -59,8 +59,7 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/main">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -69,7 +68,7 @@
                         android:text="Tone"
                         android:id="@+id/tone_label"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/text_color_primary" />
+                        android:textColor="?android:attr/textColorPrimary" />
 
                     <Spinner
                         android:layout_width="wrap_content"
@@ -92,7 +91,6 @@
                 android:paddingBottom="3dp">
 
                 <LinearLayout
-                    android:background="@color/main"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -104,7 +102,7 @@
                         android:text="Pattern"
                         android:id="@+id/pattern_label"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/text_color_primary" />
+                        android:textColor="?android:attr/textColorPrimary" />
 
                     <Spinner
                             android:layout_width="wrap_content"
@@ -125,12 +123,13 @@
             android:layout_weight="1"
             android:id="@+id/pitch_layout"
             android:paddingTop="3dp"
-            android:paddingBottom="3dp">
+            android:paddingBottom="3dp"
+            android:paddingLeft="@dimen/seekbar_side_pad"
+            android:paddingRight="@dimen/seekbar_side_pad">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:background="@color/main"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -140,7 +139,8 @@
                     android:text="Pitch"
                     android:id="@+id/pitch_label"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_color_primary" />
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:padding="@dimen/seekbar_label_pad"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -148,7 +148,8 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="0"
                     android:id="@+id/pitch_display"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:padding="@dimen/seekbar_text_pad"/>
 
                 <SeekBar
                     android:splitTrack="false"
@@ -159,8 +160,9 @@
                     android:thumb="@drawable/metal_seekbar_thumb"
                     android:layout_gravity="center_horizontal"
                     android:indeterminate="false"
-                    android:maxHeight="14dp"
-                    android:paddingTop="10dp"/>
+                    android:maxHeight="@dimen/seekbar_height"
+                    />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -171,13 +173,14 @@
             android:layout_weight="1"
             android:id="@+id/speed_layout"
             android:paddingTop="3dp"
-            android:paddingBottom="3dp">
+            android:paddingBottom="3dp"
+            android:paddingLeft="@dimen/seekbar_side_pad"
+            android:paddingRight="@dimen/seekbar_side_pad">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/main">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -186,7 +189,8 @@
                     android:text="Speed"
                     android:id="@+id/speed_label"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_color_primary" />
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:padding="@dimen/seekbar_label_pad"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,9 +198,14 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="0"
                     android:id="@+id/speed_display"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:padding="@dimen/seekbar_text_pad"/>
 
                 <SeekBar
+                    android:progressDrawable="@drawable/progress"
+                    android:maxHeight="@dimen/seekbar_height"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/metal_seekbar_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/speed_seekbar"
@@ -211,13 +220,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/loop_layout"
-            android:paddingTop="3dp">
+            android:paddingTop="3dp"
+            android:paddingLeft="@dimen/seekbar_side_pad"
+            android:paddingRight="@dimen/seekbar_side_pad">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/main"
                 android:paddingBottom="5dp">
 
                 <TextView
@@ -227,7 +237,8 @@
                     android:text="Loop"
                     android:id="@+id/loop_label"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/text_color_primary" />
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:padding="@dimen/seekbar_label_pad"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -235,9 +246,14 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="0"
                     android:id="@+id/loop_display"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:padding="@dimen/seekbar_text_pad"/>
 
                 <SeekBar
+                    android:progressDrawable="@drawable/progress"
+                    android:maxHeight="@dimen/seekbar_height"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/metal_seekbar_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/loop_seekbar"

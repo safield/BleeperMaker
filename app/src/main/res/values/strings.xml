@@ -35,7 +35,8 @@
 
     <string name="sound">Sound</string>
     <string name="pattern">Pattern</string>
-    <string name="preview">Play</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
     <string name="pitch">Pitch</string>
     <string name="speed">Speed</string>
     <string name="loop">Loop</string>

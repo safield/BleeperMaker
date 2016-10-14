@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#444444</color>
+    <color name="background">#192430</color>
+    <color name="foreground">#47565c</color>
     <color name="accent">#628BA6</color>
     <color name="accent2">#628BA6</color>
     <color name="divider">#444444</color>
@@ -9,10 +10,11 @@
     <color name="highcontrast">#E87D7D</color>
     <color name="black">#000000</color>
     <color name="spinner">#cceeff</color>
-    <color name="button_up">#324f69</color>
-    <color name="button_down">#ff0040</color>
     <color name="list_selected">#09917B</color>
-    <color name="text_color_primary">#ffffff</color>
-    <color name="text_color_secondary">#bbbbbb</color>
+    <color name="text_color_primary">#efefef</color>
+    <color name="text_color_secondary">#a1a1a1</color>
     <color name="text_color_inverse">#aaaaaa</color>
+    <color name="highlightHigh">#41ff28</color>
+    <color name="highlightMid">#8bac7c</color>
+    <color name="highlightLow">#25600a</color>
 </resources>

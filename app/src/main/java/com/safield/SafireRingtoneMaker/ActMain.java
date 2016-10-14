@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class ActMain extends Activity
 {
-    private final int MINIMUM_BLINK_TIME_MS = 2000;
+    private final int INTERUPTABLE_PLAY_TIME = 1234;
 
     private ToneMaker toneMaker;
 
@@ -108,9 +108,18 @@ public class ActMain extends Activity
 	public void buttonOnClick(View v)
     {
 		if (v.getId() == R.id.play_button) {
+
+            if (isPlayButtonAnimating) {
+                isPlayButtonAnimating = false;
+                resetPlayButton();
+                toneMaker.stopAudioTrack();
+                return;
+            }
+
             int play_time_ms = toneMaker.play();
-            if (play_time_ms > MINIMUM_BLINK_TIME_MS) {
+            if (play_time_ms > INTERUPTABLE_PLAY_TIME) {
                 isPlayButtonAnimating = true;
+                playButton.setText(R.string.stop);
                 playButton.setBackground(playButtonBlinkAnimation);
                 playButtonBlinkAnimation.start();
             }
@@ -144,16 +153,21 @@ public class ActMain extends Activity
         patternSpinner.setSelection(toneMaker.getPatternIndex());
     }
 
+    private void resetPlayButton() {
+        playButton.setText(R.string.play);
+        playButtonBlinkAnimation.stop();
+        playButton.setBackgroundResource(R.drawable.main_button);
+    }
+
 	private void setListeners()
     {
 
         toneMaker.setOnPlayCompleteListener(new ToneMaker.OnPlayCompleteListener() {
             @Override
             public void onPlayComplete() {
-                // do something when the ToneMaker stops player
                 if (isPlayButtonAnimating) {
-                    playButtonBlinkAnimation.stop();
-                    playButton.setBackgroundResource(R.drawable.main_button);
+                    isPlayButtonAnimating = false;
+                    resetPlayButton();
                 }
             }
         });
