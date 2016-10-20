@@ -5,12 +5,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
@@ -71,7 +73,16 @@ public class ToneMaker {
         public int tempo;
     }
 
+    /**
+     *  An association of a WavFile and a display name
+     */
+    private class SampleInfo {
+        public String displayName;
+        public WavFile wavFile;
+    }
+
     private static final int SAMPLE_RATE = 44100;
+    private static final int NUM_CHANNELS = 1;
 
     // this is a singleton
     private static ToneMaker instance;
@@ -177,6 +188,16 @@ public class ToneMaker {
 
     public int getSampleIndex() {
         return state.sampleIndex;
+    }
+
+    public int getNumSamples() {
+        return samples.size();
+    }
+
+    public String getSampleName(int index) {
+        //String result = samples.get(index).getName();
+        //return samples[index]
+        return new String();
     }
 
     public String getSaveName() {
@@ -288,7 +309,7 @@ public class ToneMaker {
 	{
 
 		Note currNote;
-		float[] currSample = samples.get(state.sampleIndex).getData();
+        WavFile smp = samples.get(state.sampleIndex);
         TonePattern pattern = tonePatternList.get(state.patternIndex);
 
         // we determine the final length of the output sample before we start generating it
@@ -301,7 +322,6 @@ public class ToneMaker {
         total_length *= state.loop;
 
         float[] output = new float[total_length];
-		int currSampleLength;
 
 		int outIndex = 0;
         int index = 0;
@@ -314,7 +334,7 @@ public class ToneMaker {
             for (int k = 0; k < pattern.getNumNotes(); k++) {
 
                 currNote = pattern.getNote(k);
-                pitch = semitoneToPitch(currNote.getSemitone() + state.semitoneMod);
+                pitch = (float) Math.pow(2, (currNote.getSemitone() + state.semitoneMod) / 12.0);
 
                 int currNoteLength = currNote.getLengthInSamples(state.tempo);
 
@@ -324,8 +344,8 @@ public class ToneMaker {
                     linearIntp = phasePtr - index;
 
                     //if we are not at end of sample copy data to output
-                    if (index < currSample.length - 1)
-                        output[outIndex] = (currSample[index + 1] * linearIntp) + (currSample[index] * (1 - linearIntp)); // pitch shift linear interp
+                    if (index < smp.size() - 1)
+                        output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
                     else
                         output[outIndex] = 0;
 
@@ -387,39 +407,32 @@ public class ToneMaker {
         }
     }
 
-
     /**
-     * This method takes the output PCM data of creatTone and then writes it to file [fileName].wav in directory [director]
+     * This method takes the output PCM data of creatTone and then writes it to file [fileName].wav in directory [directory]
      */
     public void writeToneToFile(String fileName, String directory)
     {
-        WavFileWriter writer = new WavFileWriter();
-        writer.writeWave(new WavFile(1, SAMPLE_RATE, createTone()), fileName, directory);
+        WavFile out_wave = new WavFile(NUM_CHANNELS, SAMPLE_RATE, createTone());
+        out_wave.writeToFile(fileName , directory);
     }
 
 	private void readSamples()
 	{
-		WavFileReader reader = new WavFileReader();
+		WavFileReader reader = new WavFileReader(LocalApp.getAppContext());
 		samples = new ArrayList<WavFile>();
 
-        Context ctx = LocalApp.getAppContext();
+        Resources res = LocalApp.getAppContext().getResources();
+        samples.add(new WavFile(res.openRawResource(R.raw.sine)));
+        samples.add(new WavFile(res.openRawResource(R.raw.sine_tail)));
+        samples.add(new WavFile(res.openRawResource(R.raw.saw)));
+        samples.add(new WavFile(res.openRawResource(R.raw.square)));
+        samples.add(new WavFile(res.openRawResource(R.raw.plucked_saw)));
+        samples.add(new WavFile(res.openRawResource(R.raw.plucked_square)));
+        samples.add(new WavFile(res.openRawResource(R.raw.poly_saw)));
 
-		samples.add(reader.readWave(ctx, R.raw.sine));
-		samples.add(reader.readWave(ctx, R.raw.sine_tail));
-		samples.add(reader.readWave(ctx, R.raw.saw));
-		samples.add(reader.readWave(ctx, R.raw.square));
-		samples.add(reader.readWave(ctx, R.raw.plucked_saw));
-		samples.add(reader.readWave(ctx, R.raw.plucked_square));
-		samples.add(reader.readWave(ctx, R.raw.poly_saw));
-		samples.add(reader.readWave(ctx, R.raw.poly_square));
-
+        // WavFile can support 1 or 2 channels, but for now ToneMaker only supports 1
         for ( int i = 0; i < samples.size(); i++)
             if (samples.get(i).getChannels() != 1)
-                throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of samples = "+samples.get(i).getChannels()+" expected NUM_CHANNELS = 1");
+                throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of channels = "+samples.get(i).getChannels()+" expected NUM_CHANNELS = 1");
 	}
-
-    private float semitoneToPitch(int semitone)
-    {
-        return (float) Math.pow(2, semitone / 12.0);
-    }
 }
