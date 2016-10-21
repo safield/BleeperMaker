@@ -418,9 +418,7 @@ public class ToneMaker {
 
 	private void readSamples()
 	{
-		WavFileReader reader = new WavFileReader(LocalApp.getAppContext());
 		samples = new ArrayList<WavFile>();
-
         Resources res = LocalApp.getAppContext().getResources();
         samples.add(new WavFile(res.openRawResource(R.raw.sine)));
         samples.add(new WavFile(res.openRawResource(R.raw.sine_tail)));
