@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#192430</color>
-    <color name="foreground">#47565c</color>
-    <color name="accent">#628BA6</color>
+    <color name="foreground">#418638</color>
+    <color name="accent">#3c8932</color>
     <color name="accent2">#628BA6</color>
     <color name="divider">#444444</color>
     <color name="main">#444444</color>
@@ -14,7 +14,7 @@
     <color name="text_color_primary">#efefef</color>
     <color name="text_color_secondary">#a1a1a1</color>
     <color name="text_color_inverse">#aaaaaa</color>
-    <color name="highlightHigh">#41ff28</color>
+    <color name="highlightHigh">#45d731</color>
     <color name="highlightMid">#8bac7c</color>
     <color name="highlightLow">#25600a</color>
 </resources>

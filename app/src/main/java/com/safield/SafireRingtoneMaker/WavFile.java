@@ -1,9 +1,5 @@
 package com.safield.SafireRingtoneMaker;
 
-import android.media.MediaScannerConnection;
-import android.os.Environment;
-import android.util.Log;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -12,8 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import static android.content.ContentValues.TAG;
 
 public class WavFile
 {
@@ -131,13 +125,11 @@ public class WavFile
         }
     }
 
-    public boolean writeToFile (String filename , String directory)
+    public boolean writeToFile (File file)
     {
         boolean result = false;
 
         try {
-            File file = new File(Environment.getExternalStoragePublicDirectory(
-                    directory), filename+".wav");
             DataOutputStream stream = new DataOutputStream(new FileOutputStream(file));
 
             //ChunkID 4
@@ -171,7 +163,6 @@ public class WavFile
             stream.write(floatAudioToShort(data));
 
             stream.close();
-            MediaScannerConnection.scanFile(LocalApp.getAppContext(), new String[]{file.getAbsolutePath()}, null, null);
 
             result = true;
         }

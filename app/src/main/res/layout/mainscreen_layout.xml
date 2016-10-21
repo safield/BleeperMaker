@@ -46,74 +46,55 @@
             android:layout_weight="1"
             android:padding="0dp">
 
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:id="@+id/tone_layout"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:paddingRight="3dp">
+                android:layout_weight="1">
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Tone"
+                    android:id="@+id/tone_label"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?android:attr/textColorPrimary" />
 
-                    <TextView
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tone_spinner"
+                    android:layout_gravity="center_horizontal"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/sounds_array"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Pattern"
+                    android:id="@+id/pattern_label"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <Spinner
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Tone"
-                        android:id="@+id/tone_label"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="?android:attr/textColorPrimary" />
-
-                    <Spinner
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/tone_spinner"
+                        android:id="@+id/pattern_spinner"
                         android:layout_gravity="center_horizontal"
                         android:spinnerMode="dropdown"
                         android:entries="@array/sounds_array"/>
-                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/pattern_layout"
-                android:layout_weight="1"
-                android:paddingLeft="3dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Pattern"
-                        android:id="@+id/pattern_label"
-                        android:layout_gravity="center_horizontal"
-                        android:textColor="?android:attr/textColorPrimary" />
-
-                    <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/pattern_spinner"
-                            android:layout_gravity="center_horizontal"
-                            android:spinnerMode="dropdown"
-                            android:entries="@array/sounds_array"/>
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -127,43 +108,38 @@
             android:paddingLeft="@dimen/seekbar_side_pad"
             android:paddingRight="@dimen/seekbar_side_pad">
 
-            <LinearLayout
-                android:orientation="vertical"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Pitch"
+                android:id="@+id/pitch_label"
+                android:layout_gravity="center_horizontal"
+                android:textColor="?android:attr/textColorPrimary"
+                android:padding="@dimen/seekbar_label_pad"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0"
+                android:id="@+id/pitch_display"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/seekbar_text_pad"/>
+
+            <SeekBar
+                android:splitTrack="false"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:id="@+id/pitch_seekbar"
+                android:progressDrawable="@drawable/progress"
+                android:thumb="@drawable/metal_seekbar_thumb"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="false"
+                android:maxHeight="@dimen/seekbar_height"
+                />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Pitch"
-                    android:id="@+id/pitch_label"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:padding="@dimen/seekbar_label_pad"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="0"
-                    android:id="@+id/pitch_display"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="@dimen/seekbar_text_pad"/>
-
-                <SeekBar
-                    android:splitTrack="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pitch_seekbar"
-                    android:progressDrawable="@drawable/progress"
-                    android:thumb="@drawable/metal_seekbar_thumb"
-                    android:layout_gravity="center_horizontal"
-                    android:indeterminate="false"
-                    android:maxHeight="@dimen/seekbar_height"
-                    />
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -177,41 +153,35 @@
             android:paddingLeft="@dimen/seekbar_side_pad"
             android:paddingRight="@dimen/seekbar_side_pad">
 
-            <LinearLayout
-                android:orientation="vertical"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Speed"
+                android:id="@+id/speed_label"
+                android:layout_gravity="center_horizontal"
+                android:textColor="?android:attr/textColorPrimary"
+                android:padding="@dimen/seekbar_label_pad"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0"
+                android:id="@+id/speed_display"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/seekbar_text_pad"/>
+
+            <SeekBar
+                android:progressDrawable="@drawable/progress"
+                android:maxHeight="@dimen/seekbar_height"
+                android:splitTrack="false"
+                android:thumb="@drawable/metal_seekbar_thumb"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Speed"
-                    android:id="@+id/speed_label"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:padding="@dimen/seekbar_label_pad"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="0"
-                    android:id="@+id/speed_display"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="@dimen/seekbar_text_pad"/>
-
-                <SeekBar
-                    android:progressDrawable="@drawable/progress"
-                    android:maxHeight="@dimen/seekbar_height"
-                    android:splitTrack="false"
-                    android:thumb="@drawable/metal_seekbar_thumb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/speed_seekbar"
-                    android:layout_gravity="center_horizontal"
-                    android:indeterminate="false" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:id="@+id/speed_seekbar"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -224,42 +194,36 @@
             android:paddingLeft="@dimen/seekbar_side_pad"
             android:paddingRight="@dimen/seekbar_side_pad">
 
-            <LinearLayout
-                android:orientation="vertical"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Loop"
+                android:id="@+id/loop_label"
+                android:layout_gravity="center_horizontal"
+                android:textColor="?android:attr/textColorPrimary"
+                android:padding="@dimen/seekbar_label_pad"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0"
+                android:id="@+id/loop_display"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/seekbar_text_pad"/>
+
+            <SeekBar
+                android:progressDrawable="@drawable/progress"
+                android:maxHeight="@dimen/seekbar_height"
+                android:splitTrack="false"
+                android:thumb="@drawable/metal_seekbar_thumb"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Loop"
-                    android:id="@+id/loop_label"
-                    android:layout_gravity="center_horizontal"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:padding="@dimen/seekbar_label_pad"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="0"
-                    android:id="@+id/loop_display"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="@dimen/seekbar_text_pad"/>
-
-                <SeekBar
-                    android:progressDrawable="@drawable/progress"
-                    android:maxHeight="@dimen/seekbar_height"
-                    android:splitTrack="false"
-                    android:thumb="@drawable/metal_seekbar_thumb"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/loop_seekbar"
-                    android:layout_gravity="center_horizontal"
-                    android:indeterminate="false" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:id="@+id/loop_seekbar"
+                android:layout_gravity="center_horizontal"
+                android:indeterminate="false" />
         </LinearLayout>
 
     </LinearLayout>

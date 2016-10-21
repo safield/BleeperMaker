@@ -16,6 +16,8 @@ import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.media.MediaScannerConnection;
+import android.os.Environment;
 import android.util.Log;
 
 /**
@@ -412,12 +414,20 @@ public class ToneMaker {
      */
     public void writeToneToFile(String fileName, String directory)
     {
+        File file = new File(Environment.getExternalStoragePublicDirectory(directory), fileName+".wav");
         WavFile out_wave = new WavFile(NUM_CHANNELS, SAMPLE_RATE, createTone());
-        out_wave.writeToFile(fileName , directory);
+        out_wave.writeToFile(file);
+        MediaScannerConnection.scanFile(LocalApp.getAppContext(), new String[]{file.getAbsolutePath()}, null, null);
     }
 
 	private void readSamples()
 	{
+
+        Field[] fields = R.raw.class.getFields();
+        for(int count=0; count < fields.length; count++) {
+            Log.i("Raw Asset: ", fields[count].getName());
+        }
+
 		samples = new ArrayList<WavFile>();
         Resources res = LocalApp.getAppContext().getResources();
         samples.add(new WavFile(res.openRawResource(R.raw.sine)));
