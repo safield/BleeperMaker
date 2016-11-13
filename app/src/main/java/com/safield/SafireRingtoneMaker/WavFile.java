@@ -32,7 +32,7 @@ public class WavFile
         this.sampleRate = sampleRate;
     }
 
-    public WavFile (InputStream dataInStream)
+    public WavFile (InputStream dataInStream) throws  IOException
     {
 
         int dataLength = 0;
@@ -120,8 +120,11 @@ public class WavFile
                 data[i] = (temp/32768.0f);
             }
 
+            dataInStream.close();
+
         } catch (IOException e) {
-            e.printStackTrace();
+            dataInStream.close();
+            throw e;
         }
     }
 

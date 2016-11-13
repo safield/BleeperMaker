@@ -49,16 +49,26 @@ public class ActMain extends Activity
 		setContentView(R.layout.mainscreen_layout);
 
         toneMaker = ToneMaker.Instance();
+        toneMaker.setSampleIndex(1); // we know sine is at this index, so set it to sine
 
         setViews();
         setListeners();
 
         // populate the Pattern spinner selector from the toneMaker patterns
-        ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(ActMain.this,
-                android.R.layout.simple_spinner_item, toneMaker.getPatternNames());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        String[] temp = new String[toneMaker.getNumPatterns()];
+        for (int i = 0; i < temp.length; i++)
+            temp[i] = toneMaker.getPatternName(i);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_item, temp);
+        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patternSpinner.setAdapter(adapter);
+
+        // populate the Tone spinner selector from the toneMaker samples
+        temp = new String[toneMaker.getNumSamples()];
+        for (int i = 0; i < temp.length; i++)
+            temp[i] = toneMaker.getSampleName(i);
+        adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
+        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        toneSpinner.setAdapter(adapter);
     }
 
 	@Override

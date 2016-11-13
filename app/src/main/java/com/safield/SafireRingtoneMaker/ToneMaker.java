@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -19,6 +20,8 @@ import android.media.AudioTrack;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
 import android.util.Log;
+
+import static android.content.ContentValues.TAG;
 
 /**
  *  Singleton Class ToneMaker - this is the model
@@ -76,11 +79,16 @@ public class ToneMaker {
     }
 
     /**
-     *  An association of a WavFile and a display name
+     *  An association of a WavFile and a display name. We use the wave file name as the display name.
      */
-    private class SampleInfo {
-        public String displayName;
-        public WavFile wavFile;
+    private class Sample {
+        public final String displayName;
+        public final WavFile wavFile;
+
+        public Sample (String displayName , WavFile wavFile){
+            this.displayName = displayName;
+            this.wavFile = wavFile;
+        }
     }
 
     private static final int SAMPLE_RATE = 44100;
@@ -99,7 +107,7 @@ public class ToneMaker {
     private AudioTrack.OnPlaybackPositionUpdateListener audiotrackListener;
     private OnPlayCompleteListener playCompleteListener;
 	private TonePatternList tonePatternList;
-	private ArrayList<WavFile> samples;
+	private ArrayList<Sample> samples;
 
     public static ToneMaker Instance()
     {
@@ -119,7 +127,7 @@ public class ToneMaker {
 
         loadedSaveName = "";
 
-        readSamples();
+        readSamplesFromAssets();
         setSampleIndex(0);
         tonePatternList = new TonePatternList(LocalApp.getAppContext() , R.raw.patterns);
 
@@ -196,10 +204,16 @@ public class ToneMaker {
         return samples.size();
     }
 
+    public int getNumPatterns () {
+        return tonePatternList.size();
+    }
+
     public String getSampleName(int index) {
-        //String result = samples.get(index).getName();
-        //return samples[index]
-        return new String();
+        return samples.get(index).displayName;
+    }
+
+    public String getPatternName(int index) {
+        return tonePatternList.get(index).getName();
     }
 
     public String getSaveName() {
@@ -224,7 +238,9 @@ public class ToneMaker {
             saveinfoCached = null;
             loadedSaveName = fileName;
             success = true;
-        } catch (IOException i) {
+        }
+        catch (IOException i) {
+
             Log.e("ToneMaker.writeSaveFile" , i.toString());
             i.printStackTrace();
         }
@@ -237,6 +253,7 @@ public class ToneMaker {
         boolean success = false;
 
         try {
+
             DataInputStream dis = new DataInputStream(LocalApp.getAppContext().openFileInput(fileName+".save"));
             state.loop = dis.readInt();
             state.patternIndex = dis.readInt();
@@ -246,7 +263,9 @@ public class ToneMaker {
             Log.d("ToneMaker.loadStateFromFile" , "Successfully loaded file name = "+fileName);
             loadedSaveName = fileName;
             success = true;
-        } catch (IOException i) {
+        }
+        catch (IOException i) {
+
             Log.e("ToneMaker.loadStateFromFile" , i.toString());
             i.printStackTrace();
         }
@@ -311,7 +330,7 @@ public class ToneMaker {
 	{
 
 		Note currNote;
-        WavFile smp = samples.get(state.sampleIndex);
+        WavFile smp = samples.get(state.sampleIndex).wavFile;
         TonePattern pattern = tonePatternList.get(state.patternIndex);
 
         // we determine the final length of the output sample before we start generating it
@@ -420,27 +439,67 @@ public class ToneMaker {
         MediaScannerConnection.scanFile(LocalApp.getAppContext(), new String[]{file.getAbsolutePath()}, null, null);
     }
 
-	private void readSamples()
+    /**
+     *  Loads all the wave files in the assets folder as samples.
+     *
+     *  This is not used currently, but is useful to quickly drop in a bunch of new wave files to audition.
+     *  Downside is that there is no clean way to custom order the wave files when the UI wants to display them.
+     */
+	private void readSamplesFromAssets()
 	{
+
+        samples = new ArrayList<Sample>();
+
+        try {
+
+            AssetManager assets = LocalApp.getAppContext().getAssets();
+            String[] fileList = assets.list("");
+
+            // there should always be files in assets
+            if (fileList.length <= 0)
+                throw new AssertionError("ToneMaker.readSamples - assets folder is empty");
+
+            for (int i = 0; i < fileList.length; i++) {
+                int index = fileList[i].lastIndexOf('.');
+                if (fileList[i].substring(index + 1).equals("wav")) {
+                    WavFile wave = new WavFile(assets.open(fileList[i]));
+                    String displayName = fileList[i].substring(0,index);
+                    samples.add(new Sample(displayName , wave));
+                }
+            }
+        }
+        catch (IOException e) {
+            Log.e(TAG,Log.getStackTraceString(e));
+        }
+
+        // there should always be at least one valid wave file in assets
+        if (samples.size() <= 0)
+            throw new AssertionError("ToneMaker.readSamples - no wave files were successfully loaded from the assets folder");
+
+        // WavFile can support 1 or 2 channels, but for now ToneMaker only supports 1
+        for ( int i = 0; i < samples.size(); i++)
+            if (samples.get(i).wavFile.getChannels() != 1)
+                throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of channels = "+samples.get(i).wavFile.getChannels()+" expected NUM_CHANNELS = 1");
+	}
+
+    /** KEEP THIS AROUND FOR NOW
+     * This explicity reads samples from the Raw resources.
+
+    private void readSamples()
+    {
 
         Field[] fields = R.raw.class.getFields();
         for(int count=0; count < fields.length; count++) {
             Log.i("Raw Asset: ", fields[count].getName());
         }
 
-		samples = new ArrayList<WavFile>();
+        samples = new ArrayList<Sample>();
         Resources res = LocalApp.getAppContext().getResources();
         samples.add(new WavFile(res.openRawResource(R.raw.sine)));
-        samples.add(new WavFile(res.openRawResource(R.raw.sine_tail)));
-        samples.add(new WavFile(res.openRawResource(R.raw.saw)));
-        samples.add(new WavFile(res.openRawResource(R.raw.square)));
-        samples.add(new WavFile(res.openRawResource(R.raw.plucked_saw)));
-        samples.add(new WavFile(res.openRawResource(R.raw.plucked_square)));
-        samples.add(new WavFile(res.openRawResource(R.raw.poly_saw)));
 
         // WavFile can support 1 or 2 channels, but for now ToneMaker only supports 1
         for ( int i = 0; i < samples.size(); i++)
             if (samples.get(i).getChannels() != 1)
                 throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of channels = "+samples.get(i).getChannels()+" expected NUM_CHANNELS = 1");
-	}
+    }*/
 }
