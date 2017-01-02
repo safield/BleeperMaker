@@ -41,6 +41,8 @@ public class ActMain extends Activity
 
     boolean isPlayButtonAnimating;
 
+    private static int last_sample_index = 1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,7 +51,10 @@ public class ActMain extends Activity
 		setContentView(R.layout.mainscreen_layout);
 
         toneMaker = ToneMaker.Instance();
-        toneMaker.setSampleIndex(1); // we know sine is at this index, so set it to sine
+
+        // this is ugly code to work around the fact that samples are loaded by tonemaker in alphabet order
+        // but really we want them explicitly ordered. This needs to be fixed.
+        toneMaker.setSampleIndex(last_sample_index); // we know sine is at this index, so set it to sine
 
         setViews();
         setListeners();
@@ -58,7 +63,7 @@ public class ActMain extends Activity
         String[] temp = new String[toneMaker.getNumPatterns()];
         for (int i = 0; i < temp.length; i++)
             temp[i] = toneMaker.getPatternName(i);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_item, temp);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
         // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patternSpinner.setAdapter(adapter);
 
@@ -241,8 +246,11 @@ public class ActMain extends Activity
         AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (adapterView.getId() == toneSpinner.getId())
+                if (adapterView.getId() == toneSpinner.getId()) {
+
                     toneMaker.setSampleIndex(i);
+                    last_sample_index = i;
+                }
                 else if (adapterView.getId() == patternSpinner.getId())
                     toneMaker.setPatternIndex(i);
             }

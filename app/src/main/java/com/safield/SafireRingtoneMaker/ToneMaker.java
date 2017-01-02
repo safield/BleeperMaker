@@ -33,8 +33,8 @@ public class ToneMaker {
     public static final int SEMITONE_MOD_AMOUNT = 24;
     public static final int TEMPO_MOD_OFFSET = -12;
     public static final int TEMPO_MOD_AMOUNT = 24;
-    public static final int TEMPO_START = 100;
-    public static final int TEMPO_INC = 7;
+    public static final int TEMPO_START = 500; // the default base tempo
+    public static final int TEMPO_INC = 35; // amount 1 increase from the UI will increase tempo
 
     private static final float ATTACK_DAMPEN = 234;
     private static final float DECAY_DAMPEN = 976;
