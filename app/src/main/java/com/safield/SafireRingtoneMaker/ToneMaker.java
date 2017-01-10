@@ -2,10 +2,7 @@ package com.safield.SafireRingtoneMaker;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -13,7 +10,6 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.content.res.Resources;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
@@ -128,7 +124,7 @@ public class ToneMaker {
         loadedSaveName = "";
 
         readSamplesFromAssets();
-        setSampleIndex(0);
+        setSample(0);
         tonePatternList = new TonePatternList(LocalApp.getAppContext() , R.raw.patterns);
 
 
@@ -192,8 +188,8 @@ public class ToneMaker {
         return (state.tempo - TEMPO_START) / TEMPO_INC;
     }
 
-    public void setSampleIndex(int position) {
-        state.sampleIndex = position;
+    public void setSample(int index) {
+        state.sampleIndex = index;
 	}
 
     public int getSampleIndex() {

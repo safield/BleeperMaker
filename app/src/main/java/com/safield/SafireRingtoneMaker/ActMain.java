@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,10 +53,6 @@ public class ActMain extends Activity
 
         toneMaker = ToneMaker.Instance();
 
-        // this is ugly code to work around the fact that samples are loaded by tonemaker in alphabet order
-        // but really we want them explicitly ordered. This needs to be fixed.
-        toneMaker.setSampleIndex(last_sample_index); // we know sine is at this index, so set it to sine
-
         setViews();
         setListeners();
 
@@ -67,12 +64,15 @@ public class ActMain extends Activity
         // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patternSpinner.setAdapter(adapter);
 
-        // populate the Tone spinner selector from the toneMaker samples
-        temp = new String[toneMaker.getNumSamples()];
-        for (int i = 0; i < temp.length; i++)
-            temp[i] = toneMaker.getSampleName(i);
-        adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
-        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // populate the Tone spinner selector from the toneMaker samples - OBSOLETE approach
+        //temp = new String[toneMaker.getNumSamples()];
+        //for (int i = 0; i < temp.length; i++)
+        //    temp[i] = toneMaker.getSampleName(i);
+        //adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
+
+        // populate from xml file
+        adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.sounds_array));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         toneSpinner.setAdapter(adapter);
     }
 
@@ -248,7 +248,19 @@ public class ActMain extends Activity
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (adapterView.getId() == toneSpinner.getId()) {
 
-                    toneMaker.setSampleIndex(i);
+                    String string = adapterView.getItemAtPosition(i).toString();
+
+                    Log.e("ActMain" , "selected item name = "+string);
+
+                    boolean found = false;
+
+                    for (int j = 0; j < toneMaker.getNumSamples(); j++) {
+                        if (toneMaker.getSampleName(j).toLowerCase().equals(string.toLowerCase())) {
+                            toneMaker.setSample(j);
+                            found = true;
+                        }
+                    }
+
                     last_sample_index = i;
                 }
                 else if (adapterView.getId() == patternSpinner.getId())

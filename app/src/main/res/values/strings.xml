@@ -13,13 +13,8 @@
 
     <string-array name="sounds_array">
         <item>Sine</item>
-        <item>Sine Tail</item>
         <item>Saw</item>
         <item>Square</item>
-        <item>Saw Plucked</item>
-        <item>Square Plucked</item>
-        <item>Poly Saw</item>
-        <item>Poly Sqaure</item>
     </string-array>
 
     <string-array name="patterns_array">
