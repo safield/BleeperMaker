@@ -42,8 +42,6 @@ public class ActMain extends Activity
 
     boolean isPlayButtonAnimating;
 
-    private static int last_sample_index = 1;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
     {
@@ -164,8 +162,22 @@ public class ActMain extends Activity
         pitchSeekbar.setProgress(toneMaker.getSemitoneMod() - ToneMaker.SEMITONE_MOD_OFFSET);
         speedSeekbar.setProgress(toneMaker.getTempoMod() - ToneMaker.TEMPO_MOD_OFFSET);
         loopSeekbar.setProgress(toneMaker.getLoop() - 1);
-        toneSpinner.setSelection(toneMaker.getSampleIndex());
         patternSpinner.setSelection(toneMaker.getPatternIndex());
+
+        // sample indexes are decoupled from the spinners indexes so some string comparisons are required
+        String sample_name = toneMaker.getSampleName(toneMaker.getSampleIndex());
+        boolean placed = false;
+
+        for (int i = 0; i < toneSpinner.getCount();i++){
+            if (toneSpinner.getItemAtPosition(i).toString().equalsIgnoreCase(sample_name)){
+                toneSpinner.setSelection(i);
+                placed = true;
+                break;
+            }
+        }
+
+        if (!placed)
+            throw new AssertionError("ActMain.SetViewFromState - could not find spinner item that matches tonemaker sample = "+sample_name);
     }
 
     private void resetPlayButton() {
@@ -248,20 +260,22 @@ public class ActMain extends Activity
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (adapterView.getId() == toneSpinner.getId()) {
 
-                    String string = adapterView.getItemAtPosition(i).toString();
+                    String item_name = adapterView.getItemAtPosition(i).toString();
 
-                    Log.e("ActMain" , "selected item name = "+string);
+                    Log.e("ActMain" , "selected item name = "+item_name);
 
-                    boolean found = false;
+                    boolean placed = false;
 
                     for (int j = 0; j < toneMaker.getNumSamples(); j++) {
-                        if (toneMaker.getSampleName(j).toLowerCase().equals(string.toLowerCase())) {
+                        if (toneMaker.getSampleName(j).toLowerCase().equals(item_name.toLowerCase())) {
                             toneMaker.setSample(j);
-                            found = true;
+                            placed = true;
+                            break;
                         }
                     }
 
-                    last_sample_index = i;
+                    if (!placed)
+                        throw new AssertionError("ActMain.SetListener - could not find toneMaker sample that matches spinner item value = "+item_name);
                 }
                 else if (adapterView.getId() == patternSpinner.getId())
                     toneMaker.setPatternIndex(i);
