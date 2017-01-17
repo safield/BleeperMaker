@@ -62,7 +62,7 @@ public class ActMain extends Activity
         // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patternSpinner.setAdapter(adapter);
 
-        // populate the Tone spinner selector from the toneMaker samples - OBSOLETE approach
+        // populate the Tone spinner selector from the toneMaker samples - OBSOLETE approach, but keep around while things are in flux
         //temp = new String[toneMaker.getNumSamples()];
         //for (int i = 0; i < temp.length; i++)
         //    temp[i] = toneMaker.getSampleName(i);
@@ -72,6 +72,7 @@ public class ActMain extends Activity
         adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.sounds_array));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         toneSpinner.setAdapter(adapter);
+        setSampleFromString(toneSpinner.getItemAtPosition(0).toString());
     }
 
 	@Override
@@ -164,7 +165,7 @@ public class ActMain extends Activity
         loopSeekbar.setProgress(toneMaker.getLoop() - 1);
         patternSpinner.setSelection(toneMaker.getPatternIndex());
 
-        // sample indexes are decoupled from the spinners indexes so some string comparisons are required
+        // sample indexes are decoupled from the spinners indexes so some so match them up by name
         String sample_name = toneMaker.getSampleName(toneMaker.getSampleIndex());
         boolean placed = false;
 
@@ -258,25 +259,8 @@ public class ActMain extends Activity
         AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (adapterView.getId() == toneSpinner.getId()) {
-
-                    String item_name = adapterView.getItemAtPosition(i).toString();
-
-                    Log.e("ActMain" , "selected item name = "+item_name);
-
-                    boolean placed = false;
-
-                    for (int j = 0; j < toneMaker.getNumSamples(); j++) {
-                        if (toneMaker.getSampleName(j).toLowerCase().equals(item_name.toLowerCase())) {
-                            toneMaker.setSample(j);
-                            placed = true;
-                            break;
-                        }
-                    }
-
-                    if (!placed)
-                        throw new AssertionError("ActMain.SetListener - could not find toneMaker sample that matches spinner item value = "+item_name);
-                }
+                if (adapterView.getId() == toneSpinner.getId())
+                    setSampleFromString(adapterView.getItemAtPosition(i).toString());
                 else if (adapterView.getId() == patternSpinner.getId())
                     toneMaker.setPatternIndex(i);
             }
@@ -289,6 +273,22 @@ public class ActMain extends Activity
 
         toneSpinner.setOnItemSelectedListener(spinnerListener);
         patternSpinner.setOnItemSelectedListener(spinnerListener);
+    }
+
+    private void setSampleFromString (String sampleName) {
+
+        boolean placed = false;
+
+        for (int j = 0; j < toneMaker.getNumSamples(); j++) {
+            if (toneMaker.getSampleName(j).equalsIgnoreCase(sampleName)) {
+                toneMaker.setSample(j);
+                placed = true;
+                break;
+            }
+        }
+
+        if (!placed)
+            throw new AssertionError("ActMain.setSampleFromString - could not find toneMaker sample that matches spinner item value = "+sampleName);
     }
 
     @Override

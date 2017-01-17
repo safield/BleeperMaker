@@ -1,4 +1,5 @@
 package com.safield.SafireRingtoneMaker;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.zip.CRC32;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -29,8 +31,8 @@ public class ToneMaker {
     public static final int SEMITONE_MOD_AMOUNT = 24;
     public static final int TEMPO_MOD_OFFSET = -12;
     public static final int TEMPO_MOD_AMOUNT = 24;
-    public static final int TEMPO_START = 500; // the default base tempo
-    public static final int TEMPO_INC = 35; // amount 1 increase from the UI will increase tempo
+    public static final int TEMPO_START = 550; // the default base tempo
+    public static final int TEMPO_INC = 30; // amount 1 increase from the UI will increase tempo
 
     private static final float ATTACK_DAMPEN = 234;
     private static final float DECAY_DAMPEN = 976;
@@ -49,8 +51,8 @@ public class ToneMaker {
      */
     public class SaveInfo implements Comparable<SaveInfo> {
 
-        public Date lastModified;
-        public String name;
+        public final Date lastModified;
+        public final String name;
 
         public SaveInfo (long lastModifed , String name) {
             this.lastModified = new Date(lastModifed);
@@ -222,7 +224,8 @@ public class ToneMaker {
 
         try {
 
-            DataOutputStream dos = new DataOutputStream(LocalApp.getAppContext().openFileOutput(fileName+".save", Context.MODE_PRIVATE));
+            DataOutputStream dos = new DataOutputStream(LocalApp.getAppContext().openFileOutput(fileName + '_' + getVersionSignature() + ".save", Context.MODE_PRIVATE));
+
             dos.writeInt(state.loop);
             dos.writeInt(state.patternIndex);
             dos.writeInt(state.sampleIndex);
@@ -244,20 +247,21 @@ public class ToneMaker {
         return success;
     }
 
-    public boolean loadStateFromFile(String fileName) {
+    public boolean loadStateFromFile(String name) {
 
         boolean success = false;
 
         try {
 
-            DataInputStream dis = new DataInputStream(LocalApp.getAppContext().openFileInput(fileName+".save"));
+            DataInputStream dis = new DataInputStream(LocalApp.getAppContext().openFileInput(name+ '_' + getVersionSignature() + ".save"));
+
             state.loop = dis.readInt();
             state.patternIndex = dis.readInt();
             state.sampleIndex = dis.readInt();
             state.semitoneMod = dis.readInt();
             state.tempo = dis.readInt();
-            Log.d("ToneMaker.loadStateFromFile" , "Successfully loaded file name = "+fileName);
-            loadedSaveName = fileName;
+            Log.d("ToneMaker.loadStateFromFile" , "Successfully loaded file name = "+name);
+            loadedSaveName = name;
             success = true;
         }
         catch (IOException i) {
@@ -297,14 +301,25 @@ public class ToneMaker {
             File fileDir = LocalApp.getAppContext().getFilesDir();
             String[] allFiles = fileDir.list();
             File tempFile;
+            String str;
 
             for (int i = 0; i < allFiles.length; i++) {
 
-                String substring = allFiles[i].substring(allFiles[i].length() - 5, allFiles[i].length());
+                str = allFiles[i];
+                String substring = str.substring(str.length() - 5, str.length());
 
                 if (substring.equals(".save")) {
-                    tempFile = new File(fileDir, allFiles[i]);
-                    saveinfoCached.add(new SaveInfo(tempFile.lastModified(), allFiles[i].substring(0, allFiles[i].length() - 5)));
+
+                    String versionSigStr = str.substring(str.lastIndexOf('_') + 1 , str.lastIndexOf('.'));
+                    long versionSignature = Long.parseLong(versionSigStr);
+
+                    tempFile = new File(fileDir, str);
+
+                    // if this save is an old version then delete it
+                    if (versionSignature != getVersionSignature())
+                        tempFile.delete();
+                    else
+                        saveinfoCached.add(new SaveInfo(tempFile.lastModified(), str.substring(0, str.lastIndexOf('_'))));
                 }
             }
 
@@ -477,6 +492,35 @@ public class ToneMaker {
             if (samples.get(i).wavFile.getChannels() != 1)
                 throw new AssertionError("ToneMaker.readSamples: invalid wave file read - incompatible number of channels = "+samples.get(i).wavFile.getChannels()+" expected NUM_CHANNELS = 1");
 	}
+
+    /**
+     * Return a checksum from the sample configuration for save file versioning
+     */
+    private long getVersionSignature() {
+
+        CRC32 checkSum = new CRC32();
+
+        try {
+
+            ByteArrayOutputStream bao_stream = new ByteArrayOutputStream();
+            bao_stream.write(samples.size());
+
+            for (Sample smp : samples)
+                bao_stream.write(smp.displayName.getBytes());
+
+            checkSum.update(bao_stream.toByteArray());
+
+            bao_stream.write(tonePatternList.size());
+            for (int i = 0; i < tonePatternList.size(); i++)
+                bao_stream.write(tonePatternList.get(i).getName().getBytes());
+            checkSum.update(bao_stream.toByteArray());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return checkSum.getValue();
+    }
 
     /** KEEP THIS AROUND FOR NOW
      * This explicity reads samples from the Raw resources.

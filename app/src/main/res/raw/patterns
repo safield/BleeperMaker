@@ -1,13 +1,13 @@
-single t
+Single t
 8 + 0
-double t
+Double t
 8 + 0
 8 + 7
-triple t
+Triple t
 8 - 12
 8 + 0
 8 + 12
-scale t
+Scale t
 8 + 0
 8 + 2
 8 + 3
@@ -16,17 +16,16 @@ scale t
 8 + 8
 8 + 10
 8 + 12
-kerplunk t
+Kerplunk t
 2 - 12
 8 + 12
 2 + 7
-downer t
+Downer t
 4 + 2
 4 + 1
 4 + 0
-seasaw 7
+Seasaw 7
 4 + 0
 4 + 5
 4 + 7
 4 + 5
-4 + 0

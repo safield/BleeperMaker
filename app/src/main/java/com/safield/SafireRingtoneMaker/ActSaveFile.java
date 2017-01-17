@@ -65,7 +65,7 @@ public class ActSaveFile extends Activity {
         if (ToneMaker.Instance().writeSaveFile(input))
             Toast.makeText(ctx, "File Saved", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(ctx, "!FILE SAVE FAILED!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, "FILE SAVE FAILED!", Toast.LENGTH_SHORT).show();
 
         finish();
     }
