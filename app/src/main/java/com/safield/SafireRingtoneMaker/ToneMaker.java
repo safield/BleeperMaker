@@ -26,7 +26,7 @@ import static android.content.ContentValues.TAG;
  */
 public class ToneMaker {
 
-    public static final int MAX_LOOP = 10;
+    public static final int MAX_LOOP = 11;
     public static final int SEMITONE_MOD_OFFSET = -12;
     public static final int SEMITONE_MOD_AMOUNT = 24;
     public static final int TEMPO_MOD_OFFSET = -12;
@@ -117,18 +117,11 @@ public class ToneMaker {
 	private ToneMaker()
 	{
         // load the defaults
-        state = new State();
-        state.loop = 1;
-        state.patternIndex = 0;
-        state.semitoneMod = 0;
-        setTempoMod(0);
-
-        loadedSaveName = "";
+        reinitializeToDefaults();
 
         readSamplesFromAssets();
         setSample(0);
         tonePatternList = new TonePatternList(LocalApp.getAppContext() , R.raw.patterns);
-
 
         audiotrackListener = new AudioTrack.OnPlaybackPositionUpdateListener() {
             @Override
@@ -142,8 +135,20 @@ public class ToneMaker {
         };
 	}
 
+    public void reinitializeToDefaults ()
+    {
+        state = new State();
+        state.loop = 6;
+        state.patternIndex = 0;
+        state.semitoneMod = 0;
+        setTempoMod(0);
+        loadedSaveName = "";
+    }
+
     public void setLoop(int loop)
     {
+        if (loop > MAX_LOOP)
+            throw new AssertionError("ToneMaker.setLoop - loop > MAX_LOOP");
         this.state.loop = loop;
     }
 
@@ -360,7 +365,7 @@ public class ToneMaker {
 
         float pitch;
 		float linearIntp = 0;
-		float phasePtr = 0;
+		float phasePtr = 1;
 
         for(int i = 0; i < state.loop; i++) {
             for (int k = 0; k < pattern.getNumNotes(); k++) {
@@ -375,11 +380,17 @@ public class ToneMaker {
                     index = (int) phasePtr;
                     linearIntp = phasePtr - index;
 
-                    //if we are not at end of sample copy data to output
-                    if (index < smp.size() - 1)
-                        output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
-                    else
+                    ///if we are not at end of sample copy data to output
+                    if (index < smp.size() - 2) { // this should be -1 when using old interp
+
+                        // old linear interp algorithm
+                        //output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
+                        
+                        output[outIndex] = interpolateCubic(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
+                    }
+                    else {
                         output[outIndex] = 0;
+                    }
 
                     // this will increasingly dampen the onset and end volume of the sample to prevent popping artifacts
                     if (j < ATTACK_DAMPEN)
@@ -391,7 +402,7 @@ public class ToneMaker {
                     phasePtr += pitch;
                 }
 
-                phasePtr = 0;
+                phasePtr = 1;
             }
 		}
 
@@ -522,6 +533,18 @@ public class ToneMaker {
         return checkSum.getValue();
     }
 
+    /**
+     * where x1 and x2 are the samples being interpolated between, x0 is x1's left neighbor, and x3 is x2's right neighbor. t is [0, 1], denoting the interpolation position between x1 and x2.
+     */
+    private float interpolateCubic(float x0, float x1, float x2, float x3, float t)
+    {
+        float a0, a1, a2, a3;
+        a0 = x3 - x2 - x0 + x1;
+        a1 = x0 - x1 - a0;
+        a2 = x2 - x0;
+        a3 = x1;
+        return (a0 * (t * t * t)) + (a1 * (t * t)) + (a2 * t) + (a3);
+    }
     /** KEEP THIS AROUND FOR NOW
      * This explicity reads samples from the Raw resources.
 

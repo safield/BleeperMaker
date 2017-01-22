@@ -40,7 +40,7 @@ public class ActMain extends Activity
 	private TextView speedDisplay;
 	private TextView loopDisplay;
 
-    boolean isPlayButtonAnimating;
+    private boolean isPlayButtonAnimating;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -68,7 +68,6 @@ public class ActMain extends Activity
         //    temp[i] = toneMaker.getSampleName(i);
         //adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
 
-        // populate from xml file
         adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.sounds_array));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         toneSpinner.setAdapter(adapter);
@@ -159,13 +158,15 @@ public class ActMain extends Activity
 
         pitchSeekbar.setMax(ToneMaker.SEMITONE_MOD_AMOUNT);
         speedSeekbar.setMax(ToneMaker.TEMPO_MOD_AMOUNT);
-        loopSeekbar.setMax(ToneMaker.MAX_LOOP);
+        loopSeekbar.setMax(ToneMaker.MAX_LOOP - 1);
         pitchSeekbar.setProgress(toneMaker.getSemitoneMod() - ToneMaker.SEMITONE_MOD_OFFSET);
         speedSeekbar.setProgress(toneMaker.getTempoMod() - ToneMaker.TEMPO_MOD_OFFSET);
         loopSeekbar.setProgress(toneMaker.getLoop() - 1);
+        loopSeekbar.setProgress(toneMaker.getLoop() - 1);
         patternSpinner.setSelection(toneMaker.getPatternIndex());
 
-        // sample indexes are decoupled from the spinners indexes so some so match them up by name
+        // sample indexes are decoupled from the spinners indexes so match them up by name
+        Log.e("ActMain" , "toneMaker.getSampleIndex() = "+toneMaker.getSampleIndex());
         String sample_name = toneMaker.getSampleName(toneMaker.getSampleIndex());
         boolean placed = false;
 
@@ -295,5 +296,13 @@ public class ActMain extends Activity
     public void onPause() {
         super.onPause();
         toneMaker.stopAudioTrack();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        // static variables should be "nulled" in onDestroy. So this is sort of like a null....
+        toneMaker.reinitializeToDefaults();
     }
 }
