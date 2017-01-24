@@ -1,4 +1,4 @@
-package com.safield.SafireRingtoneMaker;
+package com.safield.BleeperMaker;
 
 import android.app.Application;
 import android.content.Context;

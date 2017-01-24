@@ -1,4 +1,4 @@
-package com.safield.SafireRingtoneMaker;
+package com.safield.BleeperMaker;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -385,7 +385,7 @@ public class ToneMaker {
 
                         // old linear interp algorithm
                         //output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
-                        
+
                         output[outIndex] = interpolateCubic(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
                     }
                     else {

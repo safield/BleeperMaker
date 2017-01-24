@@ -1,4 +1,4 @@
-package com.safield.SafireRingtoneMaker;
+package com.safield.BleeperMaker;
 
 
 public class AssertionError extends RuntimeException {

@@ -1,6 +1,6 @@
 
 
-package com.safield.SafireRingtoneMaker;
+package com.safield.BleeperMaker;
 
 public class Note {
 

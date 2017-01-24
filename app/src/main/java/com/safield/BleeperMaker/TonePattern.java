@@ -1,4 +1,4 @@
-package com.safield.SafireRingtoneMaker;
+package com.safield.BleeperMaker;
 import java.util.ArrayList;
 
 // TonePattern is a class that manages a list of notes

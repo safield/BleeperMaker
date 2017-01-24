@@ -1,4 +1,4 @@
-package com.safield.SafireRingtoneMaker;
+package com.safield.BleeperMaker;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

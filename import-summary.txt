@@ -43,7 +43,6 @@ Eclipse projects. Here's how the projects were restructured:
 
 * AndroidManifest.xml => app\src\main\AndroidManifest.xml
 * assets\ => app\src\main\assets\
-* libs\vorbis-java-1.0.0-beta.jar => app\libs\vorbis-java-1.0.0-beta.jar
 * res\ => app\src\main\res\
 * src\ => app\src\main\java\
 

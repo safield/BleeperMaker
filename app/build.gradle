@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.example.ringtonegenerator"
+        applicationId "com.sfield.bleepermaker"
         minSdkVersion 16
         targetSdkVersion 18
     }
@@ -20,6 +20,5 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:19.1.0'
-    compile files('libs/vorbis-java-1.0.0-beta.jar')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
