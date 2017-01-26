@@ -363,6 +363,7 @@ public class ToneMaker {
 		int outIndex = 0;
         int index = 0;
 
+        boolean silent;
         float pitch;
 		float linearIntp = 0;
 		float phasePtr = 1;
@@ -371,38 +372,48 @@ public class ToneMaker {
             for (int k = 0; k < pattern.getNumNotes(); k++) {
 
                 currNote = pattern.getNote(k);
-                pitch = (float) Math.pow(2, (currNote.getSemitone() + state.semitoneMod) / 12.0);
-
                 int currNoteLength = currNote.getLengthInSamples(state.tempo);
 
-                for (int j = 0; j < currNoteLength; j++) {
-
-                    index = (int) phasePtr;
-                    linearIntp = phasePtr - index;
-
-                    ///if we are not at end of sample copy data to output
-                    if (index < smp.size() - 2) { // this should be -1 when using old interp
-
-                        // old linear interp algorithm
-                        //output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
-
-                        output[outIndex] = interpolateCubic(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
-                    }
-                    else {
+                if (currNote.isSilent()) {
+                    for (int j = 0; j < currNoteLength; j++) {
                         output[outIndex] = 0;
+                        outIndex++;
+                    }
+                }
+                else {
+
+                    pitch = (float) Math.pow(2, (currNote.getSemitone() + state.semitoneMod) / 12.0);
+
+                    for (int j = 0; j < currNoteLength; j++) {
+
+                        index = (int) phasePtr;
+                        linearIntp = phasePtr - index;
+
+                        ///if we are not at end of sample copy data to output
+                        if (index < smp.size() - 2) { // this should be -1 when using old interp
+
+                            // old linear interp algorithm
+                            //output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
+                            output[outIndex] = interpolateCubic(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
+                        }
+                        else {
+                            output[outIndex] = 0;
+                        }
+
+                        // this will increasingly dampen the onset and end volume of the sample to prevent popping artifacts
+                        if (j < ATTACK_DAMPEN) {
+                            output[outIndex] *= j / ATTACK_DAMPEN;
+                        }
+                        else if (j > currNoteLength - DECAY_DAMPEN) {
+                            output[outIndex] *= (j - currNoteLength) / -DECAY_DAMPEN;
+                        }
+
+                        outIndex++;
+                        phasePtr += pitch;
                     }
 
-                    // this will increasingly dampen the onset and end volume of the sample to prevent popping artifacts
-                    if (j < ATTACK_DAMPEN)
-                        output[outIndex] *= j / ATTACK_DAMPEN;
-                    else if (j > currNoteLength - DECAY_DAMPEN)
-                        output[outIndex] *= (j - currNoteLength) / -DECAY_DAMPEN;
-
-                    outIndex++;
-                    phasePtr += pitch;
+                    phasePtr = 1;
                 }
-
-                phasePtr = 1;
             }
 		}
 

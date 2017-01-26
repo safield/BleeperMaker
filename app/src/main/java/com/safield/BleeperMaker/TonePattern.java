@@ -23,6 +23,12 @@ public class TonePattern {
 		notes.add(new Note(this,noteType,semiTone));
 	}
 
+    // add a silent note aka a spacer
+    public void addNote(int noteType)
+    {
+        notes.add(new Note(this,noteType));
+    }
+
     public int getNumNotes()
     {
         return notes.size();

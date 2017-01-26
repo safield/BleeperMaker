@@ -95,6 +95,9 @@ public class TonePatternList {
 
                     pattern.addNote(Integer.parseInt(array[0]), semitone);
                 }
+                else if (array.length == 1) {
+                    pattern.addNote(Integer.parseInt(array[0]));
+                }
             }
 
             // add the last pattern

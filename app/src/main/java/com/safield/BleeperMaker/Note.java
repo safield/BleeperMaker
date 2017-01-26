@@ -4,6 +4,7 @@ package com.safield.BleeperMaker;
 
 public class Note {
 
+    // change to enum
 	public static final int WHOLE=1;
 	public static final int HALF=2;
 	public static final int THIRD=3;
@@ -16,6 +17,7 @@ public class Note {
 	
 	
 	private int semitone, noteType;// sampleLength;
+    private boolean silent;
 
 	private TonePattern parent;
 
@@ -23,9 +25,16 @@ public class Note {
 	{
 		this.parent = parent;
 		this.semitone = semitone;
-		
 		this.noteType = noteType;
+        silent = false;
 	}
+
+    public Note (TonePattern parent, int noteType)
+    {
+        this.parent = parent;
+        this.noteType = noteType;
+        silent = true;
+    }
 
 	public int getLengthInSamples(int tempo)
 	{
@@ -50,8 +59,15 @@ public class Note {
 		return result;
 	}
 
+    public boolean isSilent()
+    {
+        return silent;
+    }
+
 	public int getSemitone()
 	{
+        if (silent)
+            throw new AssertionError("Note.getSemitone is not valid to be called");
         return semitone;
 	}
 }
