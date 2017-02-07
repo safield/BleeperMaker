@@ -26,16 +26,16 @@ import static android.content.ContentValues.TAG;
  */
 public class ToneMaker {
 
-    public static final int MAX_LOOP = 11;
-    public static final int SEMITONE_MOD_OFFSET = -12;
+    public static final int MAX_LOOP = 15;
     public static final int SEMITONE_MOD_AMOUNT = 24;
+    public static final int SEMITONE_MOD_OFFSET = -12;
     public static final int TEMPO_MOD_OFFSET = -12;
     public static final int TEMPO_MOD_AMOUNT = 24;
     public static final int TEMPO_START = 550; // the default base tempo
-    public static final int TEMPO_INC = 30; // amount 1 increase from the UI will increase tempo
+    public static final int TEMPO_INC = 35; // amount 1 increase from the UI will increase tempo
 
-    private static final float ATTACK_DAMPEN = 234;
-    private static final float DECAY_DAMPEN = 976;
+    private static final float ATTACK_DAMPEN = 400;
+    private static final float DECAY_DAMPEN = 500;
 
     /**
      *  Listener inteface for callBack when audioTrack completes play of one generated tone
@@ -138,7 +138,7 @@ public class ToneMaker {
     public void reinitializeToDefaults ()
     {
         state = new State();
-        state.loop = 6;
+        state.loop = 8;
         state.patternIndex = 0;
         state.semitoneMod = 0;
         setTempoMod(0);
@@ -392,21 +392,22 @@ public class ToneMaker {
                         ///if we are not at end of sample copy data to output
                         if (index < smp.size() - 2) { // this should be -1 when using old interp
 
-                            // old linear interp algorithm
+                            // old linear interp algorithm InterpolateHermite4pt3oX
                             //output[outIndex] = (smp.get(index + 1) * linearIntp) + (smp.get(index) * (1 - linearIntp)); // pitch shift linear interp
-                            output[outIndex] = interpolateCubic(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
+
+                            // it seems like cubic and hermite yield the same quality overall
+                            output[outIndex] = AudioUtility.interpolateCubic(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
+                            //output[outIndex] = AudioUtility.InterpolateHermite4pt3oX(smp.get(index - 1) , smp.get(index) , smp.get(index + 1) , smp.get(index + 2) , linearIntp);
                         }
                         else {
                             output[outIndex] = 0;
                         }
 
                         // this will increasingly dampen the onset and end volume of the sample to prevent popping artifacts
-                        if (j < ATTACK_DAMPEN) {
+                        if (j < ATTACK_DAMPEN)
                             output[outIndex] *= j / ATTACK_DAMPEN;
-                        }
-                        else if (j > currNoteLength - DECAY_DAMPEN) {
+                        else if (j > currNoteLength - DECAY_DAMPEN)
                             output[outIndex] *= (j - currNoteLength) / -DECAY_DAMPEN;
-                        }
 
                         outIndex++;
                         phasePtr += pitch;
@@ -496,6 +497,10 @@ public class ToneMaker {
                 int index = fileList[i].lastIndexOf('.');
                 if (fileList[i].substring(index + 1).equals("wav")) {
                     WavFile wave = new WavFile(assets.open(fileList[i]));
+
+                    if (wave.getSampleRate() != SAMPLE_RATE)
+                        throw new AssertionError("ToneMaker.readSamplesFromAssets - unsupported sample rate - expected = "+SAMPLE_RATE+" actual = "+wave.getSampleRate());
+
                     String displayName = fileList[i].substring(0,index);
                     samples.add(new Sample(displayName , wave));
                 }
@@ -549,12 +554,28 @@ public class ToneMaker {
      */
     private float interpolateCubic(float x0, float x1, float x2, float x3, float t)
     {
+        if (x0 > 1 || x1 > 1 || x2 > 1 || x3 > 1)
+            throw new AssertionError("ToneMaker -  Clipped value detected");
         float a0, a1, a2, a3;
         a0 = x3 - x2 - x0 + x1;
         a1 = x0 - x1 - a0;
         a2 = x2 - x0;
         a3 = x1;
-        return (a0 * (t * t * t)) + (a1 * (t * t)) + (a2 * t) + (a3);
+
+        float out = (a0 * (t * t * t)) + (a1 * (t * t)) + (a2 * t) + (a3);
+        if (out > 1)
+            throw new AssertionError("ToneMaker - Clipped interpolated value detected");
+
+        return out;
+    }
+
+    public static float InterpolateHermite4pt3oX(float x0, float x1, float x2, float x3, float t)
+    {
+        float c0 = x1;
+        float c1 = .5F * (x2 - x0);
+        float c2 = x0 - (2.5F * x1) + (2 * x2) - (.5F * x3);
+        float c3 = (.5F * (x3 - x0)) + (1.5F * (x1 - x2));
+        return (((((c3 * t) + c2) * t) + c1) * t) + c0;
     }
     /** KEEP THIS AROUND FOR NOW
      * This explicity reads samples from the Raw resources.
