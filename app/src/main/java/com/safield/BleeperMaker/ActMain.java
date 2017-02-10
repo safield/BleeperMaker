@@ -60,14 +60,7 @@ public class ActMain extends Activity
         for (int i = 0; i < temp.length; i++)
             temp[i] = toneMaker.getPatternName(i);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
-        // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         patternSpinner.setAdapter(adapter);
-
-        // populate the Tone spinner selector from the toneMaker samples - OBSOLETE approach, but keep around while things are in flux
-        //temp = new String[toneMaker.getNumSamples()];
-        //for (int i = 0; i < temp.length; i++)
-        //    temp[i] = toneMaker.getSampleName(i);
-        //adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, temp);
 
         adapter = new ArrayAdapter<String>(ActMain.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.sounds_array));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

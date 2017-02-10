@@ -66,7 +66,8 @@
                 android:maxLength="24"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:imeOptions="actionDone"/>
+                android:imeOptions="actionDone"
+                android:digits="0,1,2,3,4,5,6,7,8,9,qwertzuiopasdfghjklyxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_"/>
 
         </LinearLayout>
 
